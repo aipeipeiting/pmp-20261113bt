@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="zh-Hant" data-size="l">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PMP題庫">
+<meta name="theme-color" content="#1D3557">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<title>仕新 PMP 題庫練習</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F4F6F9; --ink:#1B2433; --muted:#5D6A7C; --en:#4A5A70; --line:#DDE3EB;
+  --navy:#1D3557; --navy-2:#2A4A73; --on-navy:#FFFFFF; --on-navy-muted:#B9C6D8;
+  --gold:#A87B22; --ok:#2C7A67; --ok-soft:#E2F1EC; --bad:#B0443A; --bad-soft:#F9E5E2;
+  --sel:#2A4A73; --sel-soft:#E6ECF4;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161E; --surface:#19202B; --ink:#E7ECF3; --muted:#9AA7B8; --en:#AEBBCC; --line:#2B3442;
+    --navy:#1A2F4D; --navy-2:#27446B; --on-navy:#FFFFFF; --on-navy-muted:#A9B8CC;
+    --gold:#D8AE5A; --ok:#5DBBA2; --ok-soft:#15302A; --bad:#E58074; --bad-soft:#3A1D1A;
+    --sel:#8FB0DB; --sel-soft:#1E2B3D; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161E; --surface:#19202B; --ink:#E7ECF3; --muted:#9AA7B8; --en:#AEBBCC; --line:#2B3442;
+  --navy:#1A2F4D; --navy-2:#27446B; --on-navy:#FFFFFF; --on-navy-muted:#A9B8CC;
+  --gold:#D8AE5A; --ok:#5DBBA2; --ok-soft:#15302A; --bad:#E58074; --bad-soft:#3A1D1A;
+  --sel:#8FB0DB; --sel-soft:#1E2B3D; color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+html{font-size:18px;scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg);-webkit-text-size-adjust:100%}
+html[data-size="xl"]{font-size:21px}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:1rem;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:10}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:600px;margin:0 auto}
+
+/* full-screen navy panels: login, loading, notices */
+.panel{min-height:100vh;min-height:100dvh;background:var(--navy);color:var(--on-navy);display:flex;align-items:center;justify-content:center;padding:24px}
+.panel-box{width:100%;max-width:380px}
+.panel h1{font-family:"Noto Serif TC",serif;font-size:1.75rem;line-height:1.3;margin:0 0 6px}
+.panel p{color:var(--on-navy-muted);margin:0 0 24px}
+.panel label{display:block;font-size:.9rem;color:var(--on-navy-muted);margin:14px 0 6px}
+.panel input{width:100%;font-size:1.05rem;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff}
+.panel .go{width:100%;margin-top:22px;padding:14px;border:0;border-radius:10px;background:var(--gold);color:#fff;font-weight:700;font-size:1.05rem}
+.panel .go:disabled{opacity:.6}
+.panel .alt{width:100%;margin-top:10px;padding:12px;border:1px solid rgba(255,255,255,.28);border-radius:10px;background:none;color:var(--on-navy)}
+.panel .err{color:#F6B9B0;min-height:1.6em;margin-top:12px;font-size:.95rem}
+.spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:sp 1s linear infinite;margin:0 auto 16px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* header */
+.top{background:var(--navy);color:var(--on-navy);padding:18px 20px 30px}
+.top-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.hi{font-size:.85rem;color:var(--on-navy-muted);margin:0}
+.title{font-family:"Noto Serif TC",serif;font-size:1.45rem;margin:2px 0 0;line-height:1.3}
+.count{position:relative;text-align:right;flex:none;background:var(--navy-2);border-radius:10px;padding:7px 12px}
+.count b{display:block;font-family:"Noto Serif TC",serif;font-size:1.3rem;line-height:1.2}
+.count span{font-size:.75rem;color:var(--on-navy-muted)}
+.count input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.top-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.85rem;color:var(--on-navy-muted)}
+.top-meta strong{color:var(--on-navy)}
+.size{background:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;color:var(--on-navy);padding:3px 12px;font-size:.8rem}
+
+/* question blocks (shared) */
+.tag{display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:999px;background:var(--surface);color:var(--muted)}
+.q{margin:0 0 16px}
+.q .zh{display:block;font-family:"Noto Serif TC","Songti TC",serif;font-size:1.15rem;line-height:1.75;font-weight:600}
+.q .en{display:block;margin-top:6px;font-size:.92rem;line-height:1.6;color:var(--en)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;text-align:left;width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);transition:background .15s,border-color .15s}
+.opt .k{flex:none;width:1.6rem;height:1.6rem;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:var(--muted);margin-top:.1rem}
+.opt .zh{display:block;line-height:1.55}
+.opt .en{display:block;font-size:.88rem;line-height:1.5;color:var(--en);margin-top:3px}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--sel);background:var(--sel-soft)}
+.opt.sel .k{background:var(--sel);border-color:var(--sel);color:var(--bg)}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.ok .k{background:var(--ok);border-color:var(--ok);color:var(--bg)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.bad .k{background:var(--bad);border-color:var(--bad);color:var(--bg)}
+.explain{margin-top:16px;padding:16px;border-radius:12px;background:var(--surface);animation:op .25s ease-out}
+.explain .v{font-weight:700;font-size:1.05rem;margin-bottom:6px}
+.v.ok{color:var(--ok)} .v.bad{color:var(--bad)}
+.explain .concept{margin:0 0 12px}
+.why{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.why li{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.why li:last-child{border-bottom:0;padding-bottom:0}
+.why b{flex:none;width:1.4rem;color:var(--muted)}
+.why li.right b{color:var(--ok)}
+@keyframes op{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.explain{animation:none}.opt{transition:none}.spin{animation-duration:3s}}
+
+/* home */
+.daily{margin:-16px 12px 0;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:18px 16px;box-shadow:0 6px 18px rgba(29,53,87,.08)}
+.daily-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.daily-head h2{font-size:1rem;margin:0;color:var(--gold)}
+.sec{padding:26px 20px 4px}
+.sec h3{font-size:.85rem;color:var(--muted);font-weight:500;margin:0 0 4px}
+.row{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:15px 0}
+.row:last-child{border-bottom:0}
+.row:disabled{opacity:.55;cursor:default}
+.row .main{flex:1;min-width:0}
+.row .name{font-weight:700;font-size:1.05rem}
+.row .sub{font-size:.82rem;color:var(--muted)}
+.row .meter{flex:none;width:6.2rem;text-align:right;font-size:.8rem;color:var(--muted)}
+.bar{height:5px;border-radius:3px;background:var(--line);margin-top:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);border-radius:3px}
+.chev{flex:none;color:var(--muted);font-size:1.3rem}
+.foot{padding:20px 20px 44px;font-size:.8rem;color:var(--muted)}
+.links{display:flex;gap:20px;margin-top:10px}
+.linkbtn{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;font-size:.85rem}
+.sync{margin-top:8px}
+
+/* quiz */
+.qbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--navy);color:var(--on-navy);padding:12px 16px}
+.qbar-row{display:flex;align-items:center;gap:12px}
+.x{background:none;border:0;color:var(--on-navy);font-size:1.5rem;line-height:1;padding:4px 6px;margin-left:-6px}
+.qbar .label{flex:1;font-weight:700}
+.qbar .meta{font-size:.9rem;color:var(--on-navy-muted)}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--on-navy)}
+.timer.low{color:#F6B9B0}
+.prog{height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:10px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--gold);transition:width .25s}
+.qbody{padding:20px 18px 150px}
+.qbody .tag{margin-bottom:12px}
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));z-index:6}
+.dock .wrap{display:flex;gap:10px}
+.btn{flex:1;padding:14px;border-radius:12px;border:0;background:var(--navy);color:#fff;font-weight:700;font-size:1.05rem}
+.btn.ghost{flex:0 0 auto;background:var(--surface);color:var(--ink);padding:14px 18px}
+.btn:disabled{opacity:.4;cursor:default}
+
+/* result */
+.res{padding:28px 20px 44px}
+.score{font-family:"Noto Serif TC",serif;font-size:3.6rem;line-height:1;margin:0}
+.score small{font-size:1.2rem;color:var(--muted);margin-left:4px}
+.lead{color:var(--muted);margin:10px 0 22px}
+.dom{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}
+.review{margin-top:28px}
+.review h3{font-size:.85rem;color:var(--muted);font-weight:500;margin:0 0 8px}
+details{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:0 14px}
+summary{padding:13px 0;cursor:pointer;display:flex;gap:10px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary .mk{flex:none;font-weight:700}
+summary .mk.ok{color:var(--ok)} summary .mk.bad{color:var(--bad)}
+summary .t{overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+details .d{padding:0 0 14px}
+details .d .ans{margin:0 0 4px}
+details .explain{margin-top:10px;animation:none}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ===== 設定 ===== */
+const API_URL = 'https://script.google.com/macros/s/AKfycbyfHs04zozXLgvcz4zb49AmVVVbqEZGocmpp1fMFDGw1ucaDxZKJK03u_p9d0pPnOfQ/exec';   // ← 貼上 Apps Script「網頁應用程式」的網址（以 /exec 結尾）
+const MOCK_COUNT = 10;
+const SEC_PER_Q = 80; // 新版 PMP：240 分鐘 180 題，約每題 80 秒
+const DOMAINS = ['人員','流程','商業環境'];
+const L = 'ABCD';
+
+/* ===== 工具 ===== */
+const store={
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+  del(k){try{localStorage.removeItem(k)}catch(e){}}
+};
+const app=document.getElementById('app');
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const nl=s=>esc(s).replace(/\n/g,'<br>');
+const fmt=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=()=>fmt(new Date());
+const uid=()=>(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+let TOKEN=store.get('pmp.token',null), NAME=store.get('pmp.name','');
+let Q=[], H={}, DAYS=new Set(), S=null, tick=null, flushing=false;
+
+function applySize(){document.documentElement.dataset.size=store.get('pmp.size','l')}
+
+async function api(action,data){
+  const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(Object.assign({action,token:TOKEN},data||{}))});
+  if(!r.ok)throw new Error('http '+r.status);
+  return r.json();
+}
+
+/* ===== 畫面：載入、提示 ===== */
+function loading(msg){app.innerHTML=`<div class="panel"><div class="panel-box" style="text-align:center"><div class="spin"></div><p style="margin:0">${msg}</p></div></div>`}
+function notice(title,msg,retry){
+  app.innerHTML=`<div class="panel"><div class="panel-box"><h1>${title}</h1><p>${msg}</p>${retry?'<button class="go" id="retry">重新載入</button>':''}</div></div>`;
+  if(retry)document.getElementById('retry').onclick=load;
+}
+function handleErr(res){
+  if(res.error==='auth'){clearLocal();return login('登入已失效，請重新登入。');}
+  if(res.error==='mustChange')return changePw(true,'');
+  notice('發生錯誤',esc(res.msg||'請稍後再試一次。'),true);
+}
+function clearLocal(){TOKEN=null;store.del('pmp.token');Q=[];H={};DAYS=new Set();}
+
+/* ===== 登入 ===== */
+function login(msg){
+  app.innerHTML=`<div class="panel"><div class="panel-box">
+    <h1>PMP 題庫練習</h1><p>仕新管理顧問　學員專用</p>
+    <label for="acc">帳號</label><input id="acc" autocomplete="username" autocapitalize="off" value="${esc(store.get('pmp.acc',''))}">
+    <label for="pw">密碼</label><input id="pw" type="password" autocomplete="current-password" enterkeyhint="go">
+    <button class="go" id="go">登入</button><div class="err" id="err">${msg||''}</div></div></div>`;
+  const acc=document.getElementById('acc'),pw=document.getElementById('pw'),go=document.getElementById('go'),err=document.getElementById('err');
+  const submit=async()=>{
+    if(!acc.value.trim()||!pw.value){err.textContent='請輸入帳號和密碼。';return}
+    go.disabled=true;go.textContent='登入中';err.textContent='';
+    try{
+      const res=await api('login',{account:acc.value.trim(),password:pw.value});
+      if(res.ok){
+        TOKEN=res.token;NAME=res.name;store.set('pmp.token',TOKEN);store.set('pmp.name',NAME);store.set('pmp.acc',acc.value.trim());
+        return res.mustChange?changePw(true,pw.value):load();
+      }
+      err.textContent={bad:'帳號或密碼不正確。',locked:'輸入錯誤次數過多，請 15 分鐘後再試。',inactive:'帳號已停用或已到期，請聯絡仕新行政人員。'}[res.error]||'登入失敗，請稍後再試。';
+    }catch(e){err.textContent='無法連線，請確認網路後再試。'}
+    go.disabled=false;go.textContent='登入';
+  };
+  go.onclick=submit;
+  pw.onkeydown=e=>{if(e.key==='Enter')submit()};
+  (acc.value?pw:acc).focus();
+}
+
+/* ===== 變更密碼 ===== */
+function changePw(forced,oldKnown){
+  const needOld=!oldKnown;
+  app.innerHTML=`<div class="panel"><div class="panel-box">
+    <h1>${forced?'設定你的密碼':'變更密碼'}</h1><p>${forced?'第一次登入請改成你自己的密碼，之後就用新密碼登入。':'新密碼至少 6 碼。'}</p>
+    ${needOld?`<label for="op">${forced?'初始密碼':'目前密碼'}</label><input id="op" type="password" autocomplete="current-password">`:''}
+    <label for="np">新密碼（至少 6 碼）</label><input id="np" type="password" autocomplete="new-password">
+    <label for="np2">再輸入一次新密碼</label><input id="np2" type="password" autocomplete="new-password" enterkeyhint="done">
+    <button class="go" id="go">儲存新密碼</button>${forced?'':'<button class="alt" id="cancel">取消</button>'}
+    <div class="err" id="err"></div></div></div>`;
+  const $=id=>document.getElementById(id), err=$('err'), go=$('go');
+  const submit=async()=>{
+    const op=needOld?$('op').value:oldKnown, np=$('np').value, np2=$('np2').value;
+    if(np.length<6){err.textContent='新密碼至少要 6 碼。';return}
+    if(np!==np2){err.textContent='兩次輸入的新密碼不一樣。';return}
+    if(np===op){err.textContent='新密碼不能和原本的密碼相同。';return}
+    go.disabled=true;go.textContent='儲存中';err.textContent='';
+    try{
+      const res=await api('change',{oldPassword:op,newPassword:np});
+      if(res.ok)return forced?load():home('密碼已變更');
+      if(res.error==='auth'){clearLocal();return login('登入已失效，請重新登入。')}
+      err.textContent={bad:(forced?'初始密碼':'目前密碼')+'不正確。',weak:'新密碼至少 6 碼，且不能與原本的密碼相同。'}[res.error]||'儲存失敗，請稍後再試。';
+    }catch(e){err.textContent='無法連線，請確認網路後再試。'}
+    go.disabled=false;go.textContent='儲存新密碼';
+  };
+  go.onclick=submit; $('np2').onkeydown=e=>{if(e.key==='Enter')submit()};
+  if($('cancel'))$('cancel').onclick=()=>home();
+}
+
+/* ===== 載入題庫與紀錄 ===== */
+async function load(){
+  loading('正在載入題庫');
+  try{
+    const res=await api('data');
+    if(!res.ok)return handleErr(res);
+    Q=res.questions; H=res.history||{}; DAYS=new Set(res.days||[]);
+    if(res.name){NAME=res.name;store.set('pmp.name',NAME)}
+    store.get('pmp.queue',[]).forEach(j=>j.items.forEach(it=>{const q=Q.find(x=>x.id===it.id);if(q)localRec(q,it.pick)}));
+    home(); flush();
+  }catch(e){notice('無法連線','請確認網路連線後再試一次。',true)}
+}
+
+/* ===== 作答紀錄：本機更新＋排隊上傳 ===== */
+function localRec(q,pick){
+  const h=H[q.id]||(H[q.id]={n:0,ok:0,last:null});
+  h.n++; if(pick===q.a)h.ok++; h.last=(pick===q.a); DAYS.add(today());
+}
+function send(mode,items){
+  items.forEach(it=>{const q=Q.find(x=>x.id===it.id);if(q)localRec(q,it.pick)});
+  const qu=store.get('pmp.queue',[]); qu.push({sid:uid(),mode,items}); store.set('pmp.queue',qu); flush();
+}
+async function flush(){
+  if(flushing||!TOKEN)return; flushing=true;
+  try{
+    let qu=store.get('pmp.queue',[]);
+    while(qu.length){
+      const res=await api('submit',qu[0]);
+      if(!res.ok)break;
+      qu=store.get('pmp.queue',[]); qu.shift(); store.set('pmp.queue',qu);
+    }
+  }catch(e){}
+  flushing=false; const el=document.getElementById('sync'); if(el)el.textContent=syncText();
+}
+function syncText(){const n=store.get('pmp.queue',[]).length;return n?`有 ${n} 筆作答紀錄尚未上傳，連上網路後會自動補傳。`:''}
+window.addEventListener('online',flush);
+
+/* ===== 統計 ===== */
+function stats(list){let n=0,ok=0;list.forEach(q=>{const h=H[q.id];if(h){n+=h.n;ok+=h.ok}});return{n,ok,p:n?Math.round(ok/n*100):null}}
+const wrongList=()=>Q.filter(q=>H[q.id]&&H[q.id].last===false);
+function streak(){let n=0;const d=new Date();if(!DAYS.has(fmt(d)))d.setDate(d.getDate()-1);while(DAYS.has(fmt(d))){n++;d.setDate(d.getDate()-1)}return n}
+function dailyQ(){if(!Q.length)return null;const n=Math.floor(new Date(today()+'T00:00:00').getTime()/86400000);return Q[n%Q.length]}
+
+/* ===== 題目區塊 ===== */
+function qHTML(q){return `<p class="q"><span class="zh">${nl(q.q[0])}</span>${q.q[1]?`<span class="en">${nl(q.q[1])}</span>`:''}</p>`}
+function optsHTML(q,pick,reveal){
+  return q.o.map((t,i)=>{
+    let c='';
+    if(reveal){if(i===q.a)c='ok';else if(i===pick)c='bad';}
+    else if(pick===i)c='sel';
+    return `<button class="opt ${c}" data-pick="${i}" ${reveal?'disabled':''}><span class="k">${L[i]}</span><span><span class="zh">${nl(t[0])}</span>${t[1]?`<span class="en">${nl(t[1])}</span>`:''}</span></button>`;
+  }).join('');
+}
+function explainHTML(q,pick,showVerdict){
+  const ok=pick===q.a;
+  return `<div class="explain">${showVerdict?`<div class="v ${ok?'ok':'bad'}">${ok?'答對了':'正確答案是 '+L[q.a]}</div>`:''}
+    ${q.c?`<p class="concept">${nl(q.c)}</p>`:''}
+    <ul class="why">${q.x.map((t,i)=>t?`<li class="${i===q.a?'right':''}"><b>${L[i]}</b><span>${nl(t)}</span></li>`:'').join('')}</ul></div>`;
+}
+
+/* ===== 首頁 ===== */
+function home(toast){
+  window.scrollTo(0,0); clearInterval(tick); S=null;
+  if(!Q.length){app.innerHTML='';return notice('題庫目前沒有題目','請聯絡仕新行政人員。',true)}
+  const exam=store.get('pmp.exam',null);
+  let cd='<b>設定</b><span>考試日期</span>';
+  if(exam){const d=Math.round((new Date(exam+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);
+    cd=d>0?`<b>${d} 天</b><span>距離考試</span>`:d===0?'<b>今天</b><span>考試加油</span>':'<b>已考完</b><span>重設日期</span>';}
+  const s=streak(), dq=dailyQ(), dd=store.get('pmp.daily',{}), dpick=(dd.date===today()&&dd.id===dq.id)?dd.pick:null;
+  const row=(act,name,sub,list)=>{const st=stats(list);
+    return `<button class="row" data-act="${act}" ${list.length?'':'disabled'}><div class="main"><div class="name">${name}</div><div class="sub">${sub}</div></div>
+      <div class="meter">${st.p==null?'尚未作答':'答對率 '+st.p+'%'}<div class="bar"><i style="width:${st.p||0}%"></i></div></div><span class="chev">›</span></button>`};
+  const wl=wrongList(), mockN=Math.min(MOCK_COUNT,Q.length);
+  app.innerHTML=`<div class="wrap">
+  <header class="top"><div class="top-row"><div><p class="hi">${esc(NAME)}，你好</p><h1 class="title">PMP 題庫練習</h1></div>
+    <label class="count">${cd}<input type="date" id="exam" value="${exam||''}" aria-label="設定考試日期"></label></div>
+    <div class="top-meta"><span>${s?`已連續練習 <strong>${s}</strong> 天`:'今天答一題，開始累積練習天數'}</span>
+    <button class="size" id="size">字級：${store.get('pmp.size','l')==='xl'?'特大':'大'}</button></div></header>
+  <section class="daily"><div class="daily-head"><h2>今日一題</h2><span class="tag">${esc(dq.d)}</span></div>
+    ${qHTML(dq)}<div class="opts" id="dopts">${optsHTML(dq,dpick,dpick!=null)}</div>${dpick!=null?explainHTML(dq,dpick,true):''}</section>
+  <section class="sec"><h3>練習　答完立即看題解</h3>
+    ${row('all','全部隨機',`共 ${Q.length} 題`,Q)}
+    ${DOMAINS.map(d=>{const l=Q.filter(q=>q.d===d);return row('d:'+d,d,`${l.length} 題`,l)}).join('')}
+  </section>
+  <section class="sec"><h3>檢測</h3>
+    <button class="row" data-act="mock"><div class="main"><div class="name">模擬小考</div><div class="sub">隨機 ${mockN} 題，限時 ${Math.round(mockN*SEC_PER_Q/60)} 分鐘，交卷後看題解</div></div><span class="chev">›</span></button>
+    <button class="row" data-act="wrong" ${wl.length?'':'disabled'}><div class="main"><div class="name">錯題複習</div><div class="sub">${wl.length?`還有 ${wl.length} 題待複習，答對後自動移出`:'目前沒有錯題'}</div></div><span class="chev">›</span></button>
+  </section>
+  <div class="foot">題目為仕新管理顧問自編練習題，請勿轉載。
+    <div class="sync" id="sync">${syncText()}</div>
+    <div class="links"><button class="linkbtn" id="chpw">變更密碼</button><button class="linkbtn" id="logout">登出</button></div></div></div>`;
+  if(toast){const t=document.createElement('div');t.textContent=toast;t.style.cssText='position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:.9rem;z-index:20';document.body.appendChild(t);setTimeout(()=>t.remove(),2200);}
+  document.getElementById('exam').onchange=e=>{store.set('pmp.exam',e.target.value||null);home()};
+  document.getElementById('size').onclick=()=>{store.set('pmp.size',store.get('pmp.size','l')==='xl'?'l':'xl');applySize();home()};
+  document.getElementById('dopts').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b||dpick!=null)return;
+    const p=+b.dataset.pick;store.set('pmp.daily',{date:today(),id:dq.id,pick:p});send('daily',[{id:dq.id,pick:p}]);
+    const y=window.scrollY;home();window.scrollTo(0,y);};
+  app.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>{const a=b.dataset.act;
+    if(a==='all')start('practice',shuffle(Q),'全部隨機');
+    else if(a.startsWith('d:'))start('practice',shuffle(Q.filter(q=>q.d===a.slice(2))),a.slice(2));
+    else if(a==='mock')start('mock',shuffle(Q).slice(0,MOCK_COUNT),'模擬小考');
+    else if(a==='wrong'){const l=wrongList();if(l.length)start('wrong',shuffle(l),'錯題複習');}
+  });
+  document.getElementById('chpw').onclick=()=>changePw(false,'');
+  document.getElementById('logout').onclick=()=>{if(!confirm('確定要登出嗎？'))return;const t=TOKEN;
+    fetch(API_URL,{method:'POST',body:JSON.stringify({action:'logout',token:t})}).catch(()=>{});clearLocal();login();};
+}
+
+/* ===== 作答 ===== */
+function start(mode,list,label){
+  S={mode,list,label,i:0,picks:new Array(list.length).fill(null),end:mode==='mock'?Date.now()+list.length*SEC_PER_Q*1000:null};
+  clearInterval(tick); if(S.end)tick=setInterval(updTimer,1000);
+  renderQ();
+}
+function updTimer(){
+  if(!S||!S.end)return;
+  const left=Math.max(0,Math.round((S.end-Date.now())/1000)), el=document.getElementById('timer');
+  if(el){el.textContent=Math.floor(left/60)+':'+String(left%60).padStart(2,'0');el.classList.toggle('low',left<=60)}
+  if(left<=0){alert('時間到，系統已自動交卷。');finish()}
+}
+function renderQ(){
+  window.scrollTo(0,0);
+  const q=S.list[S.i], pick=S.picks[S.i], mock=S.mode==='mock', last=S.i===S.list.length-1, reveal=!mock&&pick!=null;
+  const done=mock?S.picks.filter(p=>p!=null).length:S.i+(pick!=null?1:0);
+  app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="quit" aria-label="離開">×</button>
+      <div class="label">${S.label}</div><div class="meta">${mock?'<span class="timer" id="timer"></span>　':''}${S.i+1} / ${S.list.length}</div></div>
+      <div class="prog"><i style="width:${done/S.list.length*100}%"></i></div></div></div>
+    <div class="wrap qbody"><span class="tag">${esc(q.d)}</span>${qHTML(q)}
+      <div class="opts" id="opts">${optsHTML(q,pick,reveal)}</div>${reveal?explainHTML(q,pick,true):''}</div>
+    <div class="dock"><div class="wrap">${mock&&S.i>0?'<button class="btn ghost" id="prev">上一題</button>':''}
+      <button class="btn" id="next" ${!mock&&pick==null?'disabled':''}>${last?(mock?'交卷':'看結果'):'下一題'}</button></div></div>`;
+  updTimer();
+  document.getElementById('opts').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;const p=+b.dataset.pick;
+    if(!mock){if(pick!=null)return;S.picks[S.i]=p;send(S.mode,[{id:q.id,pick:p}]);
+      renderQ();const ex=document.querySelector('.explain');if(ex)ex.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    else{S.picks[S.i]=p;renderQ();}};
+  document.getElementById('next').onclick=()=>{
+    if(last){if(mock){const un=S.picks.filter(p=>p==null).length;if(un&&!confirm(`還有 ${un} 題未作答，確定要交卷嗎？`))return;}finish();}
+    else{S.i++;renderQ();}};
+  const pv=document.getElementById('prev'); if(pv)pv.onclick=()=>{S.i--;renderQ()};
+  document.getElementById('quit').onclick=()=>{
+    if(mock){if(!confirm('離開會放棄這次模擬小考，確定嗎？'))return;return home();}
+    if(S.picks.some(p=>p!=null))return finish();
+    home();};
+}
+function finish(){
+  clearInterval(tick);
+  const mock=S.mode==='mock';
+  if(mock)send('mock',S.list.map((q,i)=>({id:q.id,pick:S.picks[i]})));
+  const done=S.list.map((q,i)=>({q,p:S.picks[i]})).filter(x=>mock||x.p!=null);
+  const ok=done.filter(x=>x.p===x.q.a).length, total=done.length, pct=total?Math.round(ok/total*100):0;
+  const byD=DOMAINS.map(d=>{const l=done.filter(x=>x.q.d===d);return l.length?`<div class="dom"><span>${d}</span><span>${l.filter(x=>x.p===x.q.a).length} / ${l.length}</span></div>`:''}).join('');
+  const lead=mock?(pct>=75?'表現穩定，保持這個節奏。':pct>=60?'接近及格水準，針對錯題再加強。':'先回到各領域練習，把觀念補齊。'):`本次答對 ${ok} 題，共 ${total} 題。`;
+  const rev=done.map(x=>{const r=x.p===x.q.a;return `<details><summary><span class="mk ${r?'ok':'bad'}">${r?'○':'×'}</span><span class="t">${esc(x.q.q[0])}</span></summary>
+    <div class="d">${qHTML(x.q)}<p class="ans">你的答案：${x.p==null?'未作答':L[x.p]+'　'+esc(x.q.o[x.p][0])}</p>${r?'':`<p class="ans">正確答案：${L[x.q.a]}　${esc(x.q.o[x.q.a][0])}</p>`}${explainHTML(x.q,x.p,false)}</div></details>`}).join('');
+  const label=S.label; S=null; window.scrollTo(0,0);
+  app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="quit" aria-label="回首頁">×</button><div class="label">${label}　結果</div></div></div></div>
+   <div class="wrap res">${total?`<p class="score">${pct}<small>%</small></p><p class="lead">${lead}</p>${byD}
+   <div class="review"><h3>逐題檢討　點開看題解</h3>${rev}</div>`:'<p class="lead">這次沒有作答任何題目。</p>'}
+   <div style="margin-top:24px"><button class="btn" id="back" style="width:100%">回首頁</button></div></div>`;
+  document.getElementById('quit').onclick=()=>home(); document.getElementById('back').onclick=()=>home();
+}
+
+/* ===== 啟動 ===== */
+applySize();
+if(!API_URL)notice('尚未設定後端網址','請在 index.html 開頭的 API_URL 貼上 Apps Script 網頁應用程式的網址。');
+else if(!TOKEN)login();
+else load();
+</script>
+</body>
+</html>
