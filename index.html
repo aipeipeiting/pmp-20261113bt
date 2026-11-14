@@ -70,6 +70,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 
 /* 首頁頂部 */
 .top{background:var(--navy);color:var(--on-navy);padding:16px 20px 44px}
+.top.noq{padding-bottom:20px}
 .top-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .hi{font-size:.85rem;color:var(--on-navy-muted);margin:0}
 .title{font-family:"Noto Serif TC",serif;font-size:1.45rem;margin:2px 0 0;line-height:1.3}
@@ -504,10 +505,6 @@ function chipGroup(root,name,onChange){
 function home(){
   closeSheet(); window.scrollTo(0,0); clearInterval(tick); S=null;
   if(!Q.length){return notice('題庫目前沒有題目','請聯絡仕新行政人員。',true)}
-  const exam=store.get('pmp.exam',null);
-  let cd='<b>設定</b><span>考試日期</span>';
-  if(exam){const d=Math.round((new Date(exam+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);
-    cd=d>0?`<b>${d} 天</b><span>距離考試</span>`:d===0?'<b>今天</b><span>考試加油</span>':'<b>已考完</b><span>重設日期</span>';}
   const view=store.get('pmp.view','ka');
   const card=(key,name,list)=>{const st=stats(list);
     return `<button class="card" data-p="${key}" ${list.length?'':'disabled'}><span class="cn">${name}</span><span class="cc">${list.length?list.length+' 題':'尚無題目'}</span>
@@ -516,8 +513,7 @@ function home(){
   const rl=reviewList(), wn=rl.filter(q=>!H[q.id].last).length, un=rl.length-wn;
   const ms=store.get('pmp.mockSel',null), mockN=CFG.mockCount;
   app.innerHTML=`<div class="wrap">
-  <header class="top"><div class="top-row"><div><p class="hi">${esc(NAME)}，你好</p><h1 class="title">PMP 題庫練習</h1></div>
-    <label class="count">${cd}<input type="date" id="exam" value="${exam||''}" aria-label="設定考試日期"></label></div></header>
+  <header class="top ${QUOTE?'':'noq'}"><p class="hi">${esc(NAME)}，你好</p><h1 class="title">PMP 題庫練習</h1></header>
   ${QUOTE?`<section class="quote"><p>${esc(QUOTE)}</p><small>今日加油小語</small></section>`:''}
   <div id="assign"></div>
   <section class="sec"><div class="sec-head"><h3>練習　答完立即看題解</h3>
@@ -533,7 +529,6 @@ function home(){
   <div class="foot">題目為仕新管理顧問自編練習題，請勿轉載。
     <div class="sync" id="sync">${syncText()}</div>
     <div class="links"><button class="linkbtn" id="size">字級：${store.get('pmp.size','l')==='xl'?'特大':'大'}</button><button class="linkbtn" id="chpw">變更密碼</button><button class="linkbtn" id="logout">登出</button></div></div></div>`;
-  $('exam').onchange=e=>{store.set('pmp.exam',e.target.value||null);home()};
   app.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{store.set('pmp.view',b.dataset.view);const y=window.scrollY;home();window.scrollTo(0,y)});
   app.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{const p=b.dataset.p;
     if(p==='all')practiceSheet('全部題目',Q);
