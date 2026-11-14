@@ -19,36 +19,38 @@
 :root{
   --bg:#FFFFFF; --surface:#F4F6F9; --ink:#1B2433; --muted:#5D6A7C; --en:#4A5A70; --line:#DDE3EB;
   --navy:#1D3557; --navy-2:#2A4A73; --on-navy:#FFFFFF; --on-navy-muted:#B9C6D8;
-  --gold:#A87B22; --ok:#2C7A67; --ok-soft:#E2F1EC; --bad:#B0443A; --bad-soft:#F9E5E2;
-  --sel:#2A4A73; --sel-soft:#E6ECF4;
+  --gold:#A87B22; --gold-soft:#F7EFDD; --ok:#2C7A67; --ok-soft:#E2F1EC; --bad:#B0443A; --bad-soft:#F9E5E2;
+  --warn:#9A6A12; --warn-soft:#FBF0D9; --sel:#2A4A73; --sel-soft:#E6ECF4; --shadow:rgba(29,53,87,.10);
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#11161E; --surface:#19202B; --ink:#E7ECF3; --muted:#9AA7B8; --en:#AEBBCC; --line:#2B3442;
     --navy:#1A2F4D; --navy-2:#27446B; --on-navy:#FFFFFF; --on-navy-muted:#A9B8CC;
-    --gold:#D8AE5A; --ok:#5DBBA2; --ok-soft:#15302A; --bad:#E58074; --bad-soft:#3A1D1A;
-    --sel:#8FB0DB; --sel-soft:#1E2B3D; color-scheme:dark;
+    --gold:#D8AE5A; --gold-soft:#2C2515; --ok:#5DBBA2; --ok-soft:#15302A; --bad:#E58074; --bad-soft:#3A1D1A;
+    --warn:#E2B55C; --warn-soft:#33280F; --sel:#8FB0DB; --sel-soft:#1E2B3D; --shadow:rgba(0,0,0,.35); color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#11161E; --surface:#19202B; --ink:#E7ECF3; --muted:#9AA7B8; --en:#AEBBCC; --line:#2B3442;
   --navy:#1A2F4D; --navy-2:#27446B; --on-navy:#FFFFFF; --on-navy-muted:#A9B8CC;
-  --gold:#D8AE5A; --ok:#5DBBA2; --ok-soft:#15302A; --bad:#E58074; --bad-soft:#3A1D1A;
-  --sel:#8FB0DB; --sel-soft:#1E2B3D; color-scheme:dark;
+  --gold:#D8AE5A; --gold-soft:#2C2515; --ok:#5DBBA2; --ok-soft:#15302A; --bad:#E58074; --bad-soft:#3A1D1A;
+  --warn:#E2B55C; --warn-soft:#33280F; --sel:#8FB0DB; --sel-soft:#1E2B3D; --shadow:rgba(0,0,0,.35); color-scheme:dark;
 }
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
 html{font-size:18px;scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg);-webkit-text-size-adjust:100%}
 html[data-size="xl"]{font-size:21px}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:1rem;line-height:1.65}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:10}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:30}
+body.lock{overflow:hidden}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .wrap{max-width:600px;margin:0 auto}
+.serif{font-family:"Noto Serif TC","Songti TC",serif}
 
-/* full-screen navy panels: login, loading, notices */
+/* 登入等全頁面板 */
 .panel{min-height:100vh;min-height:100dvh;background:var(--navy);color:var(--on-navy);display:flex;align-items:center;justify-content:center;padding:24px}
 .panel-box{width:100%;max-width:380px}
 .panel h1{font-family:"Noto Serif TC",serif;font-size:1.75rem;line-height:1.3;margin:0 0 6px}
@@ -66,21 +68,79 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:sp 1s linear infinite;margin:0 auto 16px}
 @keyframes sp{to{transform:rotate(360deg)}}
 
-/* header */
-.top{background:var(--navy);color:var(--on-navy);padding:18px 20px 30px}
+/* 首頁頂部 */
+.top{background:var(--navy);color:var(--on-navy);padding:16px 20px 44px}
 .top-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .hi{font-size:.85rem;color:var(--on-navy-muted);margin:0}
 .title{font-family:"Noto Serif TC",serif;font-size:1.45rem;margin:2px 0 0;line-height:1.3}
-.count{position:relative;text-align:right;flex:none;background:var(--navy-2);border-radius:10px;padding:7px 12px}
-.count b{display:block;font-family:"Noto Serif TC",serif;font-size:1.3rem;line-height:1.2}
+.count{position:relative;text-align:right;flex:none;background:var(--navy-2);border-radius:12px;padding:8px 14px}
+.count b{display:block;font-family:"Noto Serif TC",serif;font-size:1.35rem;line-height:1.2}
 .count span{font-size:.75rem;color:var(--on-navy-muted)}
 .count input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
-.top-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.85rem;color:var(--on-navy-muted)}
-.top-meta strong{color:var(--on-navy)}
-.size{background:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;color:var(--on-navy);padding:3px 12px;font-size:.8rem}
+.quote{margin:-30px 14px 0;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px 18px 16px 50px;position:relative;box-shadow:0 6px 18px var(--shadow)}
+.quote::before{content:"“";position:absolute;left:16px;top:6px;font-family:"Noto Serif TC",serif;font-size:2.4rem;color:var(--gold);line-height:1}
+.quote p{margin:0;font-family:"Noto Serif TC","Songti TC",serif;font-size:1.02rem;line-height:1.7}
+.quote small{display:block;margin-top:2px;font-size:.75rem;color:var(--muted)}
 
-/* question blocks (shared) */
+/* 區塊 */
+.sec{padding:24px 16px 4px}
+.sec-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.sec h3{font-size:.85rem;color:var(--muted);font-weight:500;margin:0}
+.seg{display:inline-flex;background:var(--surface);border-radius:999px;padding:3px}
+.seg button{border:0;background:none;border-radius:999px;padding:5px 12px;font-size:.82rem;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--bg);color:var(--ink);font-weight:700;box-shadow:0 1px 3px var(--shadow)}
+.allrow{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.allrow b{font-size:1.02rem}
+.allrow span{font-size:.82rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:12px 12px 11px;min-height:5.4rem}
+.card:disabled{opacity:.5;cursor:default}
+.card .cn{font-weight:700;font-size:1rem;line-height:1.35}
+.card .cc{font-size:.78rem;color:var(--muted)}
+.card .bar{width:100%;margin-top:auto}
+.card .cr{font-size:.76rem;color:var(--muted);margin-top:4px}
+.bar{display:block;height:5px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);border-radius:3px}
+.bar i.low{background:var(--warn)}
+.bar i.few{background:var(--muted);opacity:.5}
+.row{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:15px 4px}
+.row:last-child{border-bottom:0}
+.row .ic{flex:none;width:2.4rem;height:2.4rem;border-radius:12px;background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--navy-2)}
+:root[data-theme="dark"] .row .ic{color:var(--sel)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .row .ic{color:var(--sel)}}
+.row .ic svg{width:1.25rem;height:1.25rem}
+.row .main{flex:1;min-width:0}
+.row .name{font-weight:700;font-size:1.05rem}
+.row .sub{font-size:.82rem;color:var(--muted)}
+.chev{flex:none;color:var(--muted);font-size:1.3rem}
+.foot{padding:22px 20px 44px;font-size:.8rem;color:var(--muted)}
+.links{display:flex;gap:20px;margin-top:10px;flex-wrap:wrap}
+.linkbtn{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;font-size:.85rem}
+
+/* 底部彈出設定 */
+.ov{position:fixed;inset:0;background:rgba(10,18,30,.45);z-index:40;display:flex;align-items:flex-end;justify-content:center;animation:fd .2s ease-out}
+.sheet{width:100%;max-width:600px;max-height:88vh;overflow:auto;background:var(--bg);border-radius:20px 20px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));animation:up .25s ease-out}
+@keyframes fd{from{opacity:0}to{opacity:1}}
+@keyframes up{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
+.sh-head{display:flex;justify-content:space-between;align-items:center}
+.sh-head h2{margin:0;font-size:1.2rem;font-family:"Noto Serif TC",serif}
+.x2{background:var(--surface);border:0;border-radius:50%;width:2.1rem;height:2.1rem;font-size:1.2rem;line-height:1;color:var(--muted)}
+.sh-sub{color:var(--muted);font-size:.88rem;margin:4px 0 6px}
+.lbl{font-size:.85rem;color:var(--muted);margin:16px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:7px 14px;font-size:.92rem}
+.chip[aria-pressed="true"]{border-color:var(--sel);background:var(--sel-soft);font-weight:700}
+.chip:disabled{opacity:.45;cursor:default}
+.chip small{color:var(--muted);font-weight:400;margin-left:2px}
+.note{font-size:.85rem;color:var(--muted);margin:14px 0 0;padding:10px 12px;background:var(--surface);border-radius:10px}
+.sheet .btn{width:100%;margin-top:18px}
+
+/* 題目 */
+.tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px}
 .tag{display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:999px;background:var(--surface);color:var(--muted)}
+.flag{margin-left:auto;display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 12px;font-size:.82rem;color:var(--muted)}
+.flag svg{width:1rem;height:1rem}
+.flag[aria-pressed="true"]{border-color:var(--gold);background:var(--gold-soft);color:var(--gold);font-weight:700}
 .q{margin:0 0 16px}
 .q .zh{display:block;font-family:"Noto Serif TC","Songti TC",serif;font-size:1.15rem;line-height:1.75;font-weight:600}
 .q .en{display:block;margin-top:6px;font-size:.92rem;line-height:1.6;color:var(--en)}
@@ -96,6 +156,12 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .opt.ok .k{background:var(--ok);border-color:var(--ok);color:var(--bg)}
 .opt.bad{border-color:var(--bad);background:var(--bad-soft)}
 .opt.bad .k{background:var(--bad);border-color:var(--bad);color:var(--bg)}
+.unsure{display:flex;align-items:center;gap:10px;width:100%;margin-top:16px;padding:11px 14px;border:1px dashed var(--line);border-radius:12px;background:var(--bg);text-align:left;font-size:.92rem;color:var(--muted)}
+.unsure .box{flex:none;width:1.2rem;height:1.2rem;border:2px solid var(--line);border-radius:5px;display:flex;align-items:center;justify-content:center}
+.unsure[aria-pressed="true"]{border-style:solid;border-color:var(--gold);background:var(--gold-soft);color:var(--ink)}
+.unsure[aria-pressed="true"] .box{background:var(--gold);border-color:var(--gold)}
+.unsure[aria-pressed="true"] .box::after{content:"";width:.35rem;height:.65rem;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.unsure small{display:block;font-size:.78rem;color:var(--muted)}
 .explain{margin-top:16px;padding:16px;border-radius:12px;background:var(--surface);animation:op .25s ease-out}
 .explain .v{font-weight:700;font-size:1.05rem;margin-bottom:6px}
 .v.ok{color:var(--ok)} .v.bad{color:var(--bad)}
@@ -106,81 +172,102 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .why b{flex:none;width:1.4rem;color:var(--muted)}
 .why li.right b{color:var(--ok)}
 @keyframes op{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.explain{animation:none}.opt{transition:none}.spin{animation-duration:3s}}
+@media (prefers-reduced-motion:reduce){.explain,.ov,.sheet{animation:none}.opt{transition:none}.spin{animation-duration:3s}}
 
-/* home */
-.daily{margin:-16px 12px 0;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:18px 16px;box-shadow:0 6px 18px rgba(29,53,87,.08)}
-.daily-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.daily-head h2{font-size:1rem;margin:0;color:var(--gold)}
-.sec{padding:26px 20px 4px}
-.sec h3{font-size:.85rem;color:var(--muted);font-weight:500;margin:0 0 4px}
-.row{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:15px 0}
-.row:last-child{border-bottom:0}
-.row:disabled{opacity:.55;cursor:default}
-.row .main{flex:1;min-width:0}
-.row .name{font-weight:700;font-size:1.05rem}
-.row .sub{font-size:.82rem;color:var(--muted)}
-.row .meter{flex:none;width:6.2rem;text-align:right;font-size:.8rem;color:var(--muted)}
-.bar{height:5px;border-radius:3px;background:var(--line);margin-top:5px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--ok);border-radius:3px}
-.chev{flex:none;color:var(--muted);font-size:1.3rem}
-.doms{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:6px 0 4px}
-.dchip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
-.dchip span{font-size:.82rem;color:var(--muted)}
-.dchip b{font-family:"Noto Serif TC",serif;font-size:1.25rem}
-.subh{font-size:.85rem;color:var(--muted);font-weight:500;margin:18px 0 2px}
-.foot{padding:20px 20px 44px;font-size:.8rem;color:var(--muted)}
-.links{display:flex;gap:20px;margin-top:10px}
-.linkbtn{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;font-size:.85rem}
-.sync{margin-top:8px}
-
-/* quiz */
+/* 作答頁框架 */
 .qbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--navy);color:var(--on-navy);padding:12px 16px}
 .qbar-row{display:flex;align-items:center;gap:12px}
 .x{background:none;border:0;color:var(--on-navy);font-size:1.5rem;line-height:1;padding:4px 6px;margin-left:-6px}
-.qbar .label{flex:1;font-weight:700}
-.qbar .meta{font-size:.9rem;color:var(--on-navy-muted)}
+.qbar .label{flex:1;font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qbar .meta{font-size:.9rem;color:var(--on-navy-muted);white-space:nowrap}
+.qbar .ovbtn{background:var(--navy-2);border:0;color:var(--on-navy);border-radius:999px;padding:3px 12px;font-size:.82rem}
 .timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--on-navy)}
 .timer.low{color:#F6B9B0}
 .prog{height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:10px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--gold);transition:width .25s}
 .qbody{padding:20px 18px 150px}
-.qbody .tag{margin-bottom:12px}
 .dock{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));z-index:6}
 .dock .wrap{display:flex;gap:10px}
 .btn{flex:1;padding:14px;border-radius:12px;border:0;background:var(--navy);color:#fff;font-weight:700;font-size:1.05rem}
 .btn.ghost{flex:0 0 auto;background:var(--surface);color:var(--ink);padding:14px 18px}
 .btn:disabled{opacity:.4;cursor:default}
 
-/* result */
-.res{padding:28px 20px 44px}
+/* 小考總覽 */
+.ovw{padding:22px 18px 150px}
+.ovw h2{font-family:"Noto Serif TC",serif;font-size:1.25rem;margin:0 0 4px}
+.ovw .lead{margin:0 0 18px}
+.nums{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.num{position:relative;aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-weight:700;font-size:1.05rem}
+.num.done{background:var(--sel-soft);border-color:var(--sel)}
+.num.flag::after{content:"";position:absolute;top:5px;right:5px;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:14px}
+.legend i{display:inline-block;width:.8rem;height:.8rem;border-radius:3px;margin-right:5px;vertical-align:-1px;border:1px solid var(--line)}
+.legend .l1{background:var(--sel-soft);border-color:var(--sel)}
+.legend .l3{background:var(--gold);border-radius:50%;border:0}
+
+/* 結果與分析 */
+.res{padding:24px 18px 44px}
 .score{font-family:"Noto Serif TC",serif;font-size:3.6rem;line-height:1;margin:0}
 .score small{font-size:1.2rem;color:var(--muted);margin-left:4px}
-.lead{color:var(--muted);margin:10px 0 22px}
-.dom{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}
-.review{margin-top:28px}
-.review h3{font-size:.85rem;color:var(--muted);font-weight:500;margin:0 0 8px}
+.lead{color:var(--muted);margin:10px 0 18px}
+.cmp{display:inline-block;font-size:.85rem;font-weight:700;padding:2px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.cmp.up{background:var(--ok-soft);color:var(--ok)} .cmp.down{background:var(--bad-soft);color:var(--bad)} .cmp.eq{background:var(--surface);color:var(--muted)}
+.subh{font-size:.85rem;color:var(--muted);font-weight:500;margin:22px 0 4px}
+.dom{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.review{margin-top:24px}
 details{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:0 14px}
 summary{padding:13px 0;cursor:pointer;display:flex;gap:10px;list-style:none}
 summary::-webkit-details-marker{display:none}
 summary .mk{flex:none;font-weight:700}
 summary .mk.ok{color:var(--ok)} summary .mk.bad{color:var(--bad)}
-summary .t{overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+summary .t{flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+summary .fl{flex:none;font-size:.72rem;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:0 7px;height:1.4rem;line-height:1.3rem;margin-top:.15rem}
 details .d{padding:0 0 14px}
 details .d .ans{margin:0 0 4px}
 details .explain{margin-top:10px;animation:none}
+.tabs{display:flex;border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:calc(env(safe-area-inset-top,0px) + 50px);z-index:4}
+.tabs button{flex:1;border:0;background:none;padding:13px 0;font-weight:700;color:var(--muted);border-bottom:3px solid transparent}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.ana{padding:18px 18px 44px}
+.ana .summary{background:var(--surface);border-radius:14px;padding:14px 16px;margin-bottom:6px}
+.ana .summary b{display:block;font-size:1.05rem;margin-bottom:2px}
+.ana .summary span{font-size:.85rem;color:var(--muted)}
+.ka{padding:14px 0;border-bottom:1px solid var(--line)}
+.ka-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ka-top .n{font-weight:700;font-size:1.02rem}
+.badge{font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px}
+.badge.weak{background:var(--warn-soft);color:var(--warn)}
+.badge.good{background:var(--ok-soft);color:var(--ok)}
+.badge.few,.badge.none{background:var(--surface);color:var(--muted)}
+.ka-top .pc{margin-left:auto;font-family:"Noto Serif TC",serif;font-weight:700;font-size:1.1rem}
+.ka-mid{position:relative;margin:8px 0 6px}
+.ka-mid .bar{height:8px;border-radius:4px}
+.ka-mid .th{position:absolute;top:-3px;width:2px;height:14px;background:var(--ink);opacity:.35}
+.ka-bot{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--muted)}
+.trend.up{color:var(--ok);font-weight:700} .trend.down{color:var(--bad);font-weight:700}
+.mini{margin-left:auto;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:3px 12px;font-size:.8rem;color:var(--ink)}
+.doms{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.dchip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.dchip span{font-size:.8rem;color:var(--muted)}
+.dchip b{font-family:"Noto Serif TC",serif;font-size:1.25rem}
+.chart{width:100%;height:auto;display:block;margin:6px 0 4px}
+.mrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:13px 2px}
+.mrow .when{font-size:.82rem;color:var(--muted)}
+.mrow .sc{margin-left:auto;font-family:"Noto Serif TC",serif;font-weight:700;font-size:1.2rem}
+.mrow .main{min-width:0;flex:1}
+.mrow .sp{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty{padding:28px 10px;text-align:center;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:.9rem;z-index:60}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
 /* ===== 設定 ===== */
-const API_URL = 'https://script.google.com/macros/s/AKfycbyfHs04zozXLgvcz4zb49AmVVVbqEZGocmpp1fMFDGw1ucaDxZKJK03u_p9d0pPnOfQ/exec';   // ← 貼上 Apps Script「網頁應用程式」的網址（以 /exec 結尾）
-const MOCK_COUNT = 10;
-const SEC_PER_Q = 80; // 新版 PMP：240 分鐘 180 題，約每題 80 秒
+const API_URL = 'https://script.google.com/macros/s/AKfycbyfHs04zozXLgvcz4zb49AmVVVbqEZGocmpp1fMFDGw1ucaDxZKJK03u_p9d0pPnOfQ/exec';   // Apps Script「網頁應用程式」的網址（以 /exec 結尾）
+const SEC_PER_Q = 80;        // 新版 PMP：240 分鐘 180 題，約每題 80 秒
 const DOMAINS = ['人員','流程','商業環境'];
 const KAS = ['整合管理','範疇管理','時程管理','成本管理','品質管理','資源管理','溝通管理','風險管理','採購管理','利害關係人管理'];
-const tagHTML=q=>`<span class="tag">${q.k?esc(q.k)+'｜':''}${esc(q.d)}</span>`;
 const L = 'ABCD';
 
 /* ===== 工具 ===== */
@@ -190,17 +277,30 @@ const store={
   del(k){try{localStorage.removeItem(k)}catch(e){}}
 };
 const app=document.getElementById('app');
+const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const nl=s=>esc(s).replace(/\n/g,'<br>');
 const fmt=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const today=()=>fmt(new Date());
+const when=t=>{const d=new Date(t);return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`};
 const uid=()=>(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
+const short=k=>k==='利害關係人管理'?'利害關係人':k.replace(/管理$/,'');
+const pc=(a,b)=>b?Math.round(a/b*100):null;
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const ICON={
+  mock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M9 2h6"/></svg>',
+  wrong:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>',
+  ana:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>',
+  flag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></svg>'
+};
 
+/* ===== 狀態 ===== */
 let TOKEN=store.get('pmp.token',null), NAME=store.get('pmp.name','');
-let Q=[], H={}, DAYS=new Set(), S=null, tick=null, flushing=false;
+let Q=[], LOG=[], MOCKS=[], QUOTE='', H={}, S=null, tick=null, flushing=false;
+let CFG={threshold:.7,mockCount:10,recentN:20,minN:5};
 
 function applySize(){document.documentElement.dataset.size=store.get('pmp.size','l')}
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}
 
 async function api(action,data){
   const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(Object.assign({action,token:TOKEN},data||{}))});
@@ -208,19 +308,20 @@ async function api(action,data){
   return r.json();
 }
 
-/* ===== 畫面：載入、提示 ===== */
+/* ===== 載入畫面、提示 ===== */
 function loading(msg){app.innerHTML=`<div class="panel"><div class="panel-box" style="text-align:center"><div class="spin"></div><p style="margin:0">${msg}</p></div></div>`}
 function notice(title,msg,retry){
   app.innerHTML=`<div class="panel"><div class="panel-box"><h1>${title}</h1><p>${msg}</p>${retry?'<button class="go" id="retry">重新載入</button>':''}</div></div>`;
-  if(retry)document.getElementById('retry').onclick=load;
+  if(retry)$('retry').onclick=load;
 }
 function handleErr(res){
   if(res.error==='auth'){clearLocal();return login('登入已失效，請重新登入。');}
   if(res.error==='mustChange')return changePw(true,'');
   notice('發生錯誤',esc(res.msg||'請稍後再試一次。'),true);
 }
-function clearLocal(){TOKEN=null;store.del('pmp.token');Q=[];H={};DAYS=new Set();}
+function clearLocal(){TOKEN=null;store.del('pmp.token');Q=[];LOG=[];MOCKS=[];H={};}
 
+/* ===== 密碼眼睛 ===== */
 const EYE_ON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
 const EYE_OFF='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 5.2A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.2M6.6 6.6C3.7 8.4 2 12 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M2 2l20 20"/></svg>';
 function bindEyes(){app.querySelectorAll('.eye').forEach(b=>{const inp=b.previousElementSibling;b.innerHTML=EYE_ON;
@@ -234,7 +335,7 @@ function login(msg){
     <label for="pw">密碼</label><div class="pwf"><input id="pw" type="password" autocomplete="current-password" enterkeyhint="go"><button type="button" class="eye" aria-label="顯示密碼"></button></div>
     <button class="go" id="go">登入</button><div class="err" id="err">${msg||''}</div></div></div>`;
   bindEyes();
-  const acc=document.getElementById('acc'),pw=document.getElementById('pw'),go=document.getElementById('go'),err=document.getElementById('err');
+  const acc=$('acc'),pw=$('pw'),go=$('go'),err=$('err');
   const submit=async()=>{
     if(!acc.value.trim()||!pw.value){err.textContent='請輸入帳號和密碼。';return}
     go.disabled=true;go.textContent='登入中';err.textContent='';
@@ -244,7 +345,7 @@ function login(msg){
         TOKEN=res.token;NAME=res.name;store.set('pmp.token',TOKEN);store.set('pmp.name',NAME);store.set('pmp.acc',acc.value.trim());
         return res.mustChange?changePw(true,pw.value):load();
       }
-      err.textContent={bad:'帳號或密碼不正確。',locked:'輸入錯誤次數過多，請 15 分鐘後再試。',inactive:'帳號已停用或已到期，請聯絡仕新行政人員。'}[res.error]||'登入失敗，請稍後再試。';
+      err.textContent={bad:'帳號或密碼不正確。',locked:'輸入錯誤次數過多，請 15 分鐘後再試。',inactive:'帳號已到期或停用，如需延長請聯絡仕新行政人員。'}[res.error]||'登入失敗，請稍後再試。';
     }catch(e){err.textContent='無法連線，請確認網路後再試。'}
     go.disabled=false;go.textContent='登入';
   };
@@ -264,7 +365,7 @@ function changePw(forced,oldKnown){
     <button class="go" id="go">儲存新密碼</button>${forced?'':'<button class="alt" id="cancel">取消</button>'}
     <div class="err" id="err"></div></div></div>`;
   bindEyes();
-  const $=id=>document.getElementById(id), err=$('err'), go=$('go');
+  const err=$('err'), go=$('go');
   const submit=async()=>{
     const op=needOld?$('op').value:oldKnown, np=$('np').value, np2=$('np2').value;
     if(np.length<6){err.textContent='新密碼至少要 6 碼。';return}
@@ -273,7 +374,7 @@ function changePw(forced,oldKnown){
     go.disabled=true;go.textContent='儲存中';err.textContent='';
     try{
       const res=await api('change',{oldPassword:op,newPassword:np});
-      if(res.ok)return forced?load():home('密碼已變更');
+      if(res.ok)return forced?load():(home(),toast('密碼已變更'));
       if(res.error==='auth'){clearLocal();return login('登入已失效，請重新登入。')}
       err.textContent={bad:(forced?'初始密碼':'目前密碼')+'不正確。',weak:'新密碼至少 6 碼，且不能與原本的密碼相同。'}[res.error]||'儲存失敗，請稍後再試。';
     }catch(e){err.textContent='無法連線，請確認網路後再試。'}
@@ -289,44 +390,82 @@ async function load(){
   try{
     const res=await api('data');
     if(!res.ok)return handleErr(res);
-    Q=res.questions; H=res.history||{}; DAYS=new Set(res.days||[]);
+    Q=res.questions||[]; QUOTE=res.quote||'';
+    if(res.cfg)CFG=Object.assign(CFG,res.cfg);
+    LOG=(res.log||[]).map(x=>({t:x[0],id:x[1],pick:x[2],ok:!!x[3],u:!!x[4],sid:x[5]||''}));
+    MOCKS=(res.mocks||[]).map(x=>({t:x[0],n:x[1],ok:x[2],scope:x[3],sid:x[4]}));
     if(res.name){NAME=res.name;store.set('pmp.name',NAME)}
-    store.get('pmp.queue',[]).forEach(j=>j.items.forEach(it=>{const q=Q.find(x=>x.id===it.id);if(q)localRec(q,it.pick)}));
-    home(); flush();
+    // 尚未上傳的紀錄先併入，並放行上次中斷前保留的紀錄
+    const qu=store.get('pmp.queue',[]);
+    qu.forEach(j=>{j.hold=false;j.items.forEach(it=>LOG.push({t:j.t||Date.now(),id:it.id,pick:it.pick==null?-1:it.pick,ok:okOf(it.id,it.pick),u:!!it.unsure,sid:j.mode==='mock'?j.sid:'',j:j.sid}));
+      if(j.mode==='mock'&&!MOCKS.some(m=>m.sid===j.sid))MOCKS.push({t:j.t||Date.now(),n:j.items.length,ok:j.items.filter(it=>okOf(it.id,it.pick)).length,scope:j.scope||'',sid:j.sid});});
+    store.set('pmp.queue',qu);
+    LOG.sort((a,b)=>a.t-b.t); MOCKS.sort((a,b)=>a.t-b.t);
+    rebuild(); home(); flush();
   }catch(e){notice('無法連線','請確認網路連線後再試一次。',true)}
 }
+const qById=id=>Q.find(q=>q.id===id);
+function okOf(id,pick){const q=qById(id);return !!q&&pick===q.a}
 
 /* ===== 作答紀錄：本機更新＋排隊上傳 ===== */
-function localRec(q,pick){
-  const h=H[q.id]||(H[q.id]={n:0,ok:0,last:null});
-  h.n++; if(pick===q.a)h.ok++; h.last=(pick===q.a); DAYS.add(today());
+function rebuild(){
+  H={};
+  LOG.forEach(e=>{const h=H[e.id]||(H[e.id]={n:0,ok:0,last:null,u:false});h.n++;if(e.ok)h.ok++;h.last=e.ok;h.u=e.u;});
 }
-function send(mode,items){
-  items.forEach(it=>{const q=Q.find(x=>x.id===it.id);if(q)localRec(q,it.pick)});
-  const qu=store.get('pmp.queue',[]); qu.push({sid:uid(),mode,items}); store.set('pmp.queue',qu); flush();
+function send(mode,items,opt){
+  opt=opt||{};
+  const sid=uid(), t=Date.now();
+  items.forEach(it=>LOG.push({t,id:it.id,pick:it.pick==null?-1:it.pick,ok:okOf(it.id,it.pick),u:!!it.unsure,sid:mode==='mock'?sid:'',j:sid}));
+  const qu=store.get('pmp.queue',[]); qu.push({sid,t,mode,scope:opt.scope||'',items,hold:!!opt.hold}); store.set('pmp.queue',qu);
+  rebuild(); if(!opt.hold)flush();
+  return sid;
+}
+function setUnsure(sid,val){
+  const qu=store.get('pmp.queue',[]), j=qu.find(x=>x.sid===sid);
+  if(j){j.items.forEach(it=>it.unsure=val);store.set('pmp.queue',qu);}
+  LOG.forEach(e=>{if(e.j===sid)e.u=val});
+  rebuild();
+}
+function release(sids){
+  const set=new Set(sids.filter(Boolean)); if(!set.size)return;
+  const qu=store.get('pmp.queue',[]); qu.forEach(j=>{if(set.has(j.sid))j.hold=false}); store.set('pmp.queue',qu); flush();
 }
 async function flush(){
   if(flushing||!TOKEN)return; flushing=true;
   try{
-    let qu=store.get('pmp.queue',[]);
-    while(qu.length){
-      const res=await api('submit',qu[0]);
+    for(;;){
+      const qu=store.get('pmp.queue',[]), j=qu.find(x=>!x.hold);
+      if(!j)break;
+      const res=await api('submit',{sid:j.sid,mode:j.mode,scope:j.scope,items:j.items});
       if(!res.ok)break;
-      qu=store.get('pmp.queue',[]); qu.shift(); store.set('pmp.queue',qu);
+      store.set('pmp.queue',store.get('pmp.queue',[]).filter(x=>x.sid!==j.sid));
     }
   }catch(e){}
-  flushing=false; const el=document.getElementById('sync'); if(el)el.textContent=syncText();
+  flushing=false; const el=$('sync'); if(el)el.textContent=syncText();
 }
-function syncText(){const n=store.get('pmp.queue',[]).length;return n?`有 ${n} 筆作答紀錄尚未上傳，連上網路後會自動補傳。`:''}
+function syncText(){const n=store.get('pmp.queue',[]).filter(j=>!j.hold).length;return n?`有 ${n} 筆作答紀錄尚未上傳，連上網路後會自動補傳。`:''}
 window.addEventListener('online',flush);
 
 /* ===== 統計 ===== */
-function stats(list){let n=0,ok=0;list.forEach(q=>{const h=H[q.id];if(h){n+=h.n;ok+=h.ok}});return{n,ok,p:n?Math.round(ok/n*100):null}}
-const wrongList=()=>Q.filter(q=>H[q.id]&&H[q.id].last===false);
-function streak(){let n=0;const d=new Date();if(!DAYS.has(fmt(d)))d.setDate(d.getDate()-1);while(DAYS.has(fmt(d))){n++;d.setDate(d.getDate()-1)}return n}
-function dailyQ(){if(!Q.length)return null;const n=Math.floor(new Date(today()+'T00:00:00').getTime()/86400000);return Q[n%Q.length]}
+function stats(list){let n=0,ok=0;list.forEach(q=>{const h=H[q.id];if(h){n+=h.n;ok+=h.ok}});return{n,ok,p:pc(ok,n)}}
+const byKA=k=>Q.filter(q=>q.k===k);
+const byDom=d=>Q.filter(q=>q.d===d);
+const isReview=q=>{const h=H[q.id];return !!h&&(!h.last||h.u)};
+const reviewList=()=>Q.filter(isReview);
+function kaAnalysis(){
+  const ids={}; Q.forEach(q=>ids[q.id]=q.k);
+  return KAS.map(k=>{
+    const arr=LOG.filter(e=>ids[e.id]===k);
+    const recent=arr.slice(-CFG.recentN), prev=arr.slice(-2*CFG.recentN,-CFG.recentN);
+    const p=pc(recent.filter(e=>e.ok).length,recent.length), pp=pc(prev.filter(e=>e.ok).length,prev.length);
+    let st='none'; if(arr.length) st=recent.length<CFG.minN?'few':(p/100<CFG.threshold?'weak':'good');
+    const trend=(st==='weak'||st==='good')&&prev.length>=CFG.minN?p-pp:null;
+    return {k,n:recent.length,all:arr.length,p,st,trend,count:byKA(k).length};
+  });
+}
 
 /* ===== 題目區塊 ===== */
+const tagsHTML=q=>`<span class="tag">${q.k?esc(q.k):'未分類'}</span><span class="tag">${esc(q.d)}</span>`;
 function qHTML(q){return `<p class="q"><span class="zh">${nl(q.q[0])}</span>${q.q[1]?`<span class="en">${nl(q.q[1])}</span>`:''}</p>`}
 function optsHTML(q,pick,reveal){
   return q.o.map((t,i)=>{
@@ -343,119 +482,340 @@ function explainHTML(q,pick,showVerdict){
     <ul class="why">${q.x.map((t,i)=>t?`<li class="${i===q.a?'right':''}"><b>${L[i]}</b><span>${nl(t)}</span></li>`:'').join('')}</ul></div>`;
 }
 
+/* ===== 底部彈出視窗 ===== */
+function openSheet(html,bind){
+  closeSheet();
+  const ov=document.createElement('div'); ov.className='ov'; ov.id='ov';
+  ov.innerHTML=`<div class="sheet" role="dialog" aria-modal="true">${html}</div>`;
+  document.body.appendChild(ov); document.body.classList.add('lock');
+  ov.onclick=e=>{if(e.target===ov||e.target.closest('.x2'))closeSheet()};
+  bind(ov.querySelector('.sheet'));
+}
+function closeSheet(){const o=$('ov');if(o)o.remove();document.body.classList.remove('lock')}
+function chipGroup(root,name,onChange){
+  root.querySelectorAll(`[data-g="${name}"] .chip`).forEach(b=>b.onclick=()=>{
+    if(b.disabled)return;
+    root.querySelectorAll(`[data-g="${name}"] .chip`).forEach(x=>x.setAttribute('aria-pressed',x===b));
+    onChange(b.dataset.v);
+  });
+}
+
 /* ===== 首頁 ===== */
-function home(toast){
-  window.scrollTo(0,0); clearInterval(tick); S=null;
-  if(!Q.length){app.innerHTML='';return notice('題庫目前沒有題目','請聯絡仕新行政人員。',true)}
+function home(){
+  closeSheet(); window.scrollTo(0,0); clearInterval(tick); S=null;
+  if(!Q.length){return notice('題庫目前沒有題目','請聯絡仕新行政人員。',true)}
   const exam=store.get('pmp.exam',null);
   let cd='<b>設定</b><span>考試日期</span>';
   if(exam){const d=Math.round((new Date(exam+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);
     cd=d>0?`<b>${d} 天</b><span>距離考試</span>`:d===0?'<b>今天</b><span>考試加油</span>':'<b>已考完</b><span>重設日期</span>';}
-  const s=streak(), dq=dailyQ(), dd=store.get('pmp.daily',{}), dpick=(dd.date===today()&&dd.id===dq.id)?dd.pick:null;
-  const row=(act,name,sub,list)=>{const st=stats(list);
-    return `<button class="row" data-act="${act}" ${list.length?'':'disabled'}><div class="main"><div class="name">${name}</div><div class="sub">${sub}</div></div>
-      <div class="meter">${st.p==null?'尚未作答':'答對率 '+st.p+'%'}<div class="bar"><i style="width:${st.p||0}%"></i></div></div><span class="chev">›</span></button>`};
-  const wl=wrongList(), mockN=Math.min(MOCK_COUNT,Q.length);
+  const view=store.get('pmp.view','ka');
+  const card=(key,name,list)=>{const st=stats(list);
+    return `<button class="card" data-p="${key}" ${list.length?'':'disabled'}><span class="cn">${name}</span><span class="cc">${list.length?list.length+' 題':'尚無題目'}</span>
+      <span class="bar"><i class="${st.p!=null&&st.p/100<CFG.threshold?'low':''}" style="width:${st.p||0}%"></i></span><span class="cr">${st.p==null?'尚未作答':'答對率 '+st.p+'%'}</span></button>`};
+  const cards=view==='ka'?KAS.map(k=>card('k:'+k,k,byKA(k))).join(''):DOMAINS.map(d=>card('d:'+d,d,byDom(d))).join('');
+  const rl=reviewList(), wn=rl.filter(q=>!H[q.id].last).length, un=rl.length-wn;
+  const ms=store.get('pmp.mockSel',null), mockN=CFG.mockCount;
   app.innerHTML=`<div class="wrap">
   <header class="top"><div class="top-row"><div><p class="hi">${esc(NAME)}，你好</p><h1 class="title">PMP 題庫練習</h1></div>
-    <label class="count">${cd}<input type="date" id="exam" value="${exam||''}" aria-label="設定考試日期"></label></div>
-    <div class="top-meta"><span>${s?`已連續練習 <strong>${s}</strong> 天`:'今天答一題，開始累積練習天數'}</span>
-    <button class="size" id="size">字級：${store.get('pmp.size','l')==='xl'?'特大':'大'}</button></div></header>
-  <section class="daily"><div class="daily-head"><h2>今日一題</h2>${tagHTML(dq)}</div>
-    ${qHTML(dq)}<div class="opts" id="dopts">${optsHTML(dq,dpick,dpick!=null)}</div>${dpick!=null?explainHTML(dq,dpick,true):''}</section>
-  <section class="sec"><h3>練習　答完立即看題解</h3>
-    ${row('all','全部隨機',`共 ${Q.length} 題`,Q)}
+    <label class="count">${cd}<input type="date" id="exam" value="${exam||''}" aria-label="設定考試日期"></label></div></header>
+  ${QUOTE?`<section class="quote"><p>${esc(QUOTE)}</p><small>今日加油小語</small></section>`:''}
+  <div id="assign"></div>
+  <section class="sec"><div class="sec-head"><h3>練習　答完立即看題解</h3>
+    <div class="seg" role="group" aria-label="分類方式"><button data-view="ka" aria-pressed="${view==='ka'}">知識領域</button><button data-view="dom" aria-pressed="${view==='dom'}">考綱領域</button></div></div>
+    <button class="allrow" data-p="all"><b>全部題目</b><span>共 ${Q.length} 題　›</span></button>
+    <div class="grid">${cards}</div>
   </section>
-  <section class="sec"><h3>十大知識領域</h3>
-    ${KAS.map(k=>{const l=Q.filter(q=>q.k===k);return row('k:'+k,k,l.length?`${l.length} 題`:'尚無題目',l)}).join('')}
-  </section>
-  <section class="sec"><h3>新版考綱領域答對率</h3>
-    <div class="doms">${DOMAINS.map(d=>{const st=stats(Q.filter(q=>q.d===d));return `<button class="dchip" data-act="d:${d}"><span>${d}</span><b>${st.p==null?'—':st.p+'%'}</b></button>`}).join('')}</div>
-  </section>
-  <section class="sec"><h3>檢測</h3>
-    <button class="row" data-act="mock"><div class="main"><div class="name">模擬小考</div><div class="sub">隨機 ${mockN} 題，限時 ${Math.round(mockN*SEC_PER_Q/60)} 分鐘，交卷後看題解</div></div><span class="chev">›</span></button>
-    <button class="row" data-act="wrong" ${wl.length?'':'disabled'}><div class="main"><div class="name">錯題複習</div><div class="sub">${wl.length?`還有 ${wl.length} 題待複習，答對後自動移出`:'目前沒有錯題'}</div></div><span class="chev">›</span></button>
+  <section class="sec"><h3>檢測與複習</h3>
+    <button class="row" data-act="mock"><span class="ic">${ICON.mock}</span><div class="main"><div class="name">模擬小考</div><div class="sub">${mockN} 題，限時 ${Math.round(mockN*SEC_PER_Q/60)} 分鐘・範圍：${esc(ms?scopeLabel(ms):'全部領域')}</div></div><span class="chev">›</span></button>
+    <button class="row" data-act="wrong"><span class="ic">${ICON.wrong}</span><div class="main"><div class="name">錯題複習</div><div class="sub">${rl.length?`答錯 ${wn} 題・答對但不確定 ${un} 題`:'目前沒有待複習的題目'}</div></div><span class="chev">›</span></button>
+    <button class="row" data-act="ana"><span class="ic">${ICON.ana}</span><div class="main"><div class="name">學習分析</div><div class="sub">弱點分析・歷次小考紀錄</div></div><span class="chev">›</span></button>
   </section>
   <div class="foot">題目為仕新管理顧問自編練習題，請勿轉載。
     <div class="sync" id="sync">${syncText()}</div>
-    <div class="links"><button class="linkbtn" id="chpw">變更密碼</button><button class="linkbtn" id="logout">登出</button></div></div></div>`;
-  if(toast){const t=document.createElement('div');t.textContent=toast;t.style.cssText='position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:.9rem;z-index:20';document.body.appendChild(t);setTimeout(()=>t.remove(),2200);}
-  document.getElementById('exam').onchange=e=>{store.set('pmp.exam',e.target.value||null);home()};
-  document.getElementById('size').onclick=()=>{store.set('pmp.size',store.get('pmp.size','l')==='xl'?'l':'xl');applySize();home()};
-  document.getElementById('dopts').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b||dpick!=null)return;
-    const p=+b.dataset.pick;store.set('pmp.daily',{date:today(),id:dq.id,pick:p});send('daily',[{id:dq.id,pick:p}]);
-    const y=window.scrollY;home();window.scrollTo(0,y);};
-  app.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>{const a=b.dataset.act;
-    if(a==='all')start('practice',shuffle(Q),'全部隨機');
-    else if(a.startsWith('d:'))start('practice',shuffle(Q.filter(q=>q.d===a.slice(2))),a.slice(2));
-    else if(a.startsWith('k:'))start('practice',shuffle(Q.filter(q=>q.k===a.slice(2))),a.slice(2));
-    else if(a==='mock')start('mock',shuffle(Q).slice(0,MOCK_COUNT),'模擬小考');
-    else if(a==='wrong'){const l=wrongList();if(l.length)start('wrong',shuffle(l),'錯題複習');}
-  });
-  document.getElementById('chpw').onclick=()=>changePw(false,'');
-  document.getElementById('logout').onclick=()=>{if(!confirm('確定要登出嗎？'))return;const t=TOKEN;
+    <div class="links"><button class="linkbtn" id="size">字級：${store.get('pmp.size','l')==='xl'?'特大':'大'}</button><button class="linkbtn" id="chpw">變更密碼</button><button class="linkbtn" id="logout">登出</button></div></div></div>`;
+  $('exam').onchange=e=>{store.set('pmp.exam',e.target.value||null);home()};
+  app.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{store.set('pmp.view',b.dataset.view);const y=window.scrollY;home();window.scrollTo(0,y)});
+  app.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{const p=b.dataset.p;
+    if(p==='all')practiceSheet('全部題目',Q);
+    else if(p.startsWith('k:'))practiceSheet(p.slice(2),byKA(p.slice(2)));
+    else practiceSheet(p.slice(2),byDom(p.slice(2)));});
+  app.querySelector('[data-act=mock]').onclick=mockSheet;
+  app.querySelector('[data-act=wrong]').onclick=()=>wrongPage();
+  app.querySelector('[data-act=ana]').onclick=()=>anaPage('weak');
+  $('size').onclick=()=>{store.set('pmp.size',store.get('pmp.size','l')==='xl'?'l':'xl');applySize();home()};
+  $('chpw').onclick=()=>changePw(false,'');
+  $('logout').onclick=()=>{if(!confirm('確定要登出嗎？'))return;const t=TOKEN;
     fetch(API_URL,{method:'POST',body:JSON.stringify({action:'logout',token:t})}).catch(()=>{});clearLocal();login();};
 }
 
+/* ===== 練習設定 ===== */
+function practiceSheet(label,list){
+  const fresh=list.filter(q=>!H[q.id]);
+  let n=store.get('pmp.pn','10'), f=store.get('pmp.pf','all');
+  if(f==='new'&&!fresh.length)f='all';
+  const count=()=>{const pool=f==='new'?fresh:list;return n==='all'?pool.length:Math.min(+n,pool.length)};
+  openSheet(`<div class="sh-head"><h2>${esc(label)}</h2><button class="x2" aria-label="關閉">×</button></div>
+    <p class="sh-sub">共 ${list.length} 題，已做過 ${list.length-fresh.length} 題，還沒做過 ${fresh.length} 題</p>
+    <div class="lbl">題數</div><div class="chips" data-g="n">${[['10','10 題'],['20','20 題'],['all','全部']].map(([v,t])=>`<button class="chip" data-v="${v}" aria-pressed="${n===v}">${t}</button>`).join('')}</div>
+    <div class="lbl">題目範圍</div><div class="chips" data-g="f"><button class="chip" data-v="all" aria-pressed="${f==='all'}">全部題目</button><button class="chip" data-v="new" aria-pressed="${f==='new'}" ${fresh.length?'':'disabled'}>只練沒做過的<small>（${fresh.length}）</small></button></div>
+    <button class="btn" id="go"></button>`,root=>{
+      const go=root.querySelector('#go'); const upd=()=>{go.textContent=`開始練習（${count()} 題）`};
+      chipGroup(root,'n',v=>{n=v;store.set('pmp.pn',v);upd()});
+      chipGroup(root,'f',v=>{f=v;store.set('pmp.pf',v);upd()});
+      upd();
+      go.onclick=()=>{const pool=shuffle(f==='new'?fresh:list);start('practice',pool.slice(0,count()),label)};
+    });
+}
+
+/* ===== 模擬小考設定 ===== */
+function scopeLabel(sel){
+  const avail=KAS.filter(k=>byKA(k).length);
+  const s=sel.filter(k=>avail.includes(k));
+  if(!s.length||s.length===avail.length)return '全部領域';
+  return s.map(short).join('、');
+}
+function mockSheet(){
+  const avail=KAS.filter(k=>byKA(k).length);
+  let sel=(store.get('pmp.mockSel',null)||avail).filter(k=>avail.includes(k)); if(!sel.length)sel=avail.slice();
+  const n=CFG.mockCount;
+  openSheet(`<div class="sh-head"><h2>模擬小考</h2><button class="x2" aria-label="關閉">×</button></div>
+    <p class="sh-sub">${n} 題，限時 ${Math.round(n*SEC_PER_Q/60)} 分鐘，交卷後看題解。</p>
+    <div class="lbl">考試範圍（選已經上過的知識領域）</div>
+    <div class="chips"><button class="chip" id="allk">全部領域</button></div>
+    <div class="chips" id="kas" style="margin-top:8px">${KAS.map(k=>`<button class="chip" data-k="${k}" ${byKA(k).length?'':'disabled'}>${short(k)}</button>`).join('')}</div>
+    <p class="note" id="dist"></p><button class="btn" id="go">開始考試</button>`,root=>{
+      const upd=()=>{
+        root.querySelectorAll('[data-k]').forEach(b=>b.setAttribute('aria-pressed',sel.includes(b.dataset.k)));
+        $('allk').setAttribute('aria-pressed',sel.length===avail.length);
+        const plan=mockPlan(sel,n);
+        $('dist').textContent=sel.length?'題目分配：'+plan.filter(x=>x.c).map(x=>`${short(x.k)} ${x.c}`).join('、'):'請至少選擇一個知識領域。';
+        $('go').disabled=!sel.length;
+      };
+      $('allk').onclick=()=>{sel=sel.length===avail.length?[]:avail.slice();upd()};
+      root.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{if(b.disabled)return;const k=b.dataset.k;sel=sel.includes(k)?sel.filter(x=>x!==k):KAS.filter(x=>x===k||sel.includes(x));upd()});
+      upd();
+      $('go').onclick=()=>{store.set('pmp.mockSel',sel);const plan=mockPlan(sel,n);
+        let list=[];plan.forEach(x=>list=list.concat(shuffle(byKA(x.k)).slice(0,x.c)));
+        start('mock',shuffle(list),'模擬小考',{scope:scopeLabel(sel)});};
+    });
+}
+function mockPlan(sel,n){
+  const plan=sel.map(k=>({k,c:0,max:byKA(k).length}));
+  let left=Math.min(n,plan.reduce((s,x)=>s+x.max,0));
+  // 平均分配，餘數隨機分給還有題目的領域
+  while(left>0){
+    const open=plan.filter(x=>x.c<x.max); if(!open.length)break;
+    const base=Math.floor(left/open.length);
+    if(base>0){open.forEach(x=>{const add=Math.min(base,x.max-x.c);x.c+=add;left-=add})}
+    else{shuffle(open).slice(0,left).forEach(x=>{x.c++;left--})}
+  }
+  return plan;
+}
+
+/* ===== 錯題複習 ===== */
+function wrongPage(fk,ft){
+  closeSheet(); window.scrollTo(0,0);
+  fk=fk||'all'; ft=ft||'all';
+  const rl=reviewList();
+  const kaList=KAS.filter(k=>rl.some(q=>q.k===k));
+  const inK=rl.filter(q=>fk==='all'||q.k===fk);
+  const wrongs=inK.filter(q=>!H[q.id].last), uns=inK.filter(q=>H[q.id].last);
+  const list=ft==='wrong'?wrongs:ft==='unsure'?uns:inK;
+  app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="back" aria-label="回首頁">×</button><div class="label">錯題複習</div></div></div></div>
+  <div class="wrap ana">${rl.length?`
+    <div class="lbl">知識領域</div>
+    <div class="chips" data-g="k"><button class="chip" data-v="all" aria-pressed="${fk==='all'}">全部<small>（${rl.length}）</small></button>${kaList.map(k=>`<button class="chip" data-v="${k}" aria-pressed="${fk===k}">${short(k)}<small>（${rl.filter(q=>q.k===k).length}）</small></button>`).join('')}</div>
+    <div class="lbl">類型</div>
+    <div class="chips" data-g="t"><button class="chip" data-v="all" aria-pressed="${ft==='all'}">全部<small>（${inK.length}）</small></button><button class="chip" data-v="wrong" aria-pressed="${ft==='wrong'}">答錯<small>（${wrongs.length}）</small></button><button class="chip" data-v="unsure" aria-pressed="${ft==='unsure'}">答對但不確定<small>（${uns.length}）</small></button></div>
+    <p class="note">再次答對、而且沒有勾選「這題我是猜的」，題目就會移出錯題複習。</p>
+    <button class="btn" id="go" style="width:100%;margin-top:18px" ${list.length?'':'disabled'}>開始複習（${list.length} 題）</button>`
+  :'<div class="empty">目前沒有待複習的題目。<br>答錯或勾選「這題我是猜的」的題目，會出現在這裡。</div>'}</div>`;
+  $('back').onclick=()=>home();
+  if(!rl.length)return;
+  chipGroup(app,'k',v=>wrongPage(v,ft));
+  chipGroup(app,'t',v=>wrongPage(fk,v));
+  $('go').onclick=()=>start('wrong',shuffle(list),'錯題複習');
+}
+
 /* ===== 作答 ===== */
-function start(mode,list,label){
-  S={mode,list,label,i:0,picks:new Array(list.length).fill(null),end:mode==='mock'?Date.now()+list.length*SEC_PER_Q*1000:null};
+function start(mode,list,label,opt){
+  closeSheet();
+  if(!list.length)return toast('沒有可以練習的題目');
+  S={mode,list,label,i:0,picks:new Array(list.length).fill(null),flags:new Array(list.length).fill(false),
+     sids:new Array(list.length).fill(null),scope:(opt&&opt.scope)||'',end:mode==='mock'?Date.now()+list.length*SEC_PER_Q*1000:null,view:'q'};
   clearInterval(tick); if(S.end)tick=setInterval(updTimer,1000);
   renderQ();
 }
 function updTimer(){
   if(!S||!S.end)return;
-  const left=Math.max(0,Math.round((S.end-Date.now())/1000)), el=document.getElementById('timer');
+  const left=Math.max(0,Math.round((S.end-Date.now())/1000)), el=$('timer');
   if(el){el.textContent=Math.floor(left/60)+':'+String(left%60).padStart(2,'0');el.classList.toggle('low',left<=60)}
-  if(left<=0){alert('時間到，系統已自動交卷。');finish()}
+  if(left<=0){clearInterval(tick);alert('時間到，系統已自動交卷。');finish()}
+}
+function qbarHTML(extra){
+  const mock=S.mode==='mock';
+  const done=mock?S.picks.filter(p=>p!=null).length:S.i+(S.picks[S.i]!=null?1:0);
+  return `<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="quit" aria-label="離開">×</button>
+      <div class="label">${esc(S.label)}</div><div class="meta">${mock?'<span class="timer" id="timer"></span>　':''}${extra||`${S.i+1} / ${S.list.length}`}</div>
+      ${mock&&S.view==='q'?'<button class="ovbtn" id="ovw">總覽</button>':''}</div>
+      <div class="prog"><i style="width:${done/S.list.length*100}%"></i></div></div></div>`;
 }
 function renderQ(){
-  window.scrollTo(0,0);
+  window.scrollTo(0,0); S.view='q';
   const q=S.list[S.i], pick=S.picks[S.i], mock=S.mode==='mock', last=S.i===S.list.length-1, reveal=!mock&&pick!=null;
-  const done=mock?S.picks.filter(p=>p!=null).length:S.i+(pick!=null?1:0);
-  app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="quit" aria-label="離開">×</button>
-      <div class="label">${S.label}</div><div class="meta">${mock?'<span class="timer" id="timer"></span>　':''}${S.i+1} / ${S.list.length}</div></div>
-      <div class="prog"><i style="width:${done/S.list.length*100}%"></i></div></div></div>
-    <div class="wrap qbody">${tagHTML(q)}${qHTML(q)}
-      <div class="opts" id="opts">${optsHTML(q,pick,reveal)}</div>${reveal?explainHTML(q,pick,true):''}</div>
+  const showUnsure=reveal&&pick===q.a;
+  app.innerHTML=`${qbarHTML()}
+    <div class="wrap qbody"><div class="tags">${tagsHTML(q)}${mock?`<button class="flag" id="flag" aria-pressed="${S.flags[S.i]}">${ICON.flag}${S.flags[S.i]?'已標記':'標記'}</button>`:''}</div>${qHTML(q)}
+      <div class="opts" id="opts">${optsHTML(q,pick,reveal)}</div>
+      ${showUnsure?`<button class="unsure" id="uns" aria-pressed="${S.flags[S.i]}"><span class="box"></span><span>這題我是猜的<small>勾選後，這題會列入錯題複習</small></span></button>`:''}
+      ${reveal?explainHTML(q,pick,true):''}</div>
     <div class="dock"><div class="wrap">${mock&&S.i>0?'<button class="btn ghost" id="prev">上一題</button>':''}
-      <button class="btn" id="next" ${!mock&&pick==null?'disabled':''}>${last?(mock?'交卷':'看結果'):'下一題'}</button></div></div>`;
+      <button class="btn" id="next" ${!mock&&pick==null?'disabled':''}>${last?(mock?'檢查並交卷':'看結果'):'下一題'}</button></div></div>`;
   updTimer();
-  document.getElementById('opts').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;const p=+b.dataset.pick;
-    if(!mock){if(pick!=null)return;S.picks[S.i]=p;send(S.mode,[{id:q.id,pick:p}]);
-      renderQ();const ex=document.querySelector('.explain');if(ex)ex.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  $('opts').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;const p=+b.dataset.pick;
+    if(!mock){if(pick!=null)return;S.picks[S.i]=p;S.sids[S.i]=send(S.mode,[{id:q.id,pick:p,unsure:false}],{hold:true});
+      renderQ();const ex=document.querySelector('.unsure')||document.querySelector('.explain');if(ex)ex.scrollIntoView({behavior:'smooth',block:'nearest'});}
     else{S.picks[S.i]=p;renderQ();}};
-  document.getElementById('next').onclick=()=>{
-    if(last){if(mock){const un=S.picks.filter(p=>p==null).length;if(un&&!confirm(`還有 ${un} 題未作答，確定要交卷嗎？`))return;}finish();}
+  if($('flag'))$('flag').onclick=()=>{S.flags[S.i]=!S.flags[S.i];renderQ()};
+  if($('uns'))$('uns').onclick=()=>{S.flags[S.i]=!S.flags[S.i];setUnsure(S.sids[S.i],S.flags[S.i]);
+    const b=$('uns');b.setAttribute('aria-pressed',S.flags[S.i]);};
+  $('next').onclick=()=>{
+    if(!mock)release([S.sids[S.i]]);
+    if(last){mock?overview():finish();}
     else{S.i++;renderQ();}};
-  const pv=document.getElementById('prev'); if(pv)pv.onclick=()=>{S.i--;renderQ()};
-  document.getElementById('quit').onclick=()=>{
-    if(mock){if(!confirm('離開會放棄這次模擬小考，確定嗎？'))return;return home();}
-    if(S.picks.some(p=>p!=null))return finish();
-    home();};
+  if($('prev'))$('prev').onclick=()=>{S.i--;renderQ()};
+  if($('ovw'))$('ovw').onclick=overview;
+  $('quit').onclick=quitQuiz;
+}
+function quitQuiz(){
+  if(S.mode==='mock'){if(!confirm('離開會放棄這次模擬小考，確定嗎？'))return;return home();}
+  release(S.sids);
+  if(S.picks.some(p=>p!=null))return finish();
+  home();
+}
+function overview(){
+  window.scrollTo(0,0); S.view='o';
+  const answered=S.picks.filter(p=>p!=null).length, fl=S.flags.map((f,i)=>f?i+1:0).filter(Boolean);
+  app.innerHTML=`${qbarHTML('總覽')}
+    <div class="wrap ovw"><h2>交卷前檢查</h2>
+      <p class="lead">已作答 ${answered} / ${S.list.length} 題${fl.length?`，標記 ${fl.length} 題（第 ${fl.join('、')} 題）`:''}。點題號可以回去檢查。</p>
+      <div class="nums">${S.list.map((q,i)=>`<button class="num ${S.picks[i]!=null?'done':''} ${S.flags[i]?'flag':''}" data-i="${i}" aria-label="第 ${i+1} 題">${i+1}</button>`).join('')}</div>
+      <div class="legend"><span><i class="l1"></i>已作答</span><span><i></i>未作答</span><span><i class="l3"></i>已標記</span></div></div>
+    <div class="dock"><div class="wrap"><button class="btn ghost" id="backq">回到題目</button><button class="btn" id="submit">交卷</button></div></div>`;
+  updTimer();
+  app.querySelectorAll('.num').forEach(b=>b.onclick=()=>{S.i=+b.dataset.i;renderQ()});
+  $('backq').onclick=()=>renderQ();
+  $('submit').onclick=()=>{
+    const un=S.picks.filter(p=>p==null).length;
+    const msg=[un?`還有 ${un} 題未作答`:'',fl.length?`有 ${fl.length} 題已標記`:''].filter(Boolean).join('，');
+    if(msg&&!confirm(msg+'，確定要交卷嗎？'))return;
+    finish();};
+  $('quit').onclick=quitQuiz;
 }
 function finish(){
   clearInterval(tick);
   const mock=S.mode==='mock';
-  if(mock)send('mock',S.list.map((q,i)=>({id:q.id,pick:S.picks[i]})));
-  const done=S.list.map((q,i)=>({q,p:S.picks[i]})).filter(x=>mock||x.p!=null);
-  const ok=done.filter(x=>x.p===x.q.a).length, total=done.length, pct=total?Math.round(ok/total*100):0;
-  const byK=KAS.map(k=>{const l=done.filter(x=>x.q.k===k);return l.length?`<div class="dom"><span>${k}</span><span>${l.filter(x=>x.p===x.q.a).length} / ${l.length}</span></div>`:''}).join('');
-  const byD=DOMAINS.map(d=>{const l=done.filter(x=>x.q.d===d);return l.length?`<div class="dom"><span>${d}</span><span>${l.filter(x=>x.p===x.q.a).length} / ${l.length}</span></div>`:''}).join('');
-  const lead=mock?(pct>=75?'表現穩定，保持這個節奏。':pct>=60?'接近及格水準，針對錯題再加強。':'先回到各領域練習，把觀念補齊。'):`本次答對 ${ok} 題，共 ${total} 題。`;
-  const rev=done.map(x=>{const r=x.p===x.q.a;return `<details><summary><span class="mk ${r?'ok':'bad'}">${r?'○':'×'}</span><span class="t">${esc(x.q.q[0])}</span></summary>
-    <div class="d">${qHTML(x.q)}<p class="ans">你的答案：${x.p==null?'未作答':L[x.p]+'　'+esc(x.q.o[x.p][0])}</p>${r?'':`<p class="ans">正確答案：${L[x.q.a]}　${esc(x.q.o[x.q.a][0])}</p>`}${explainHTML(x.q,x.p,false)}</div></details>`}).join('');
-  const label=S.label; S=null; window.scrollTo(0,0);
-  app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="quit" aria-label="回首頁">×</button><div class="label">${label}　結果</div></div></div></div>
-   <div class="wrap res">${total?`<p class="score">${pct}<small>%</small></p><p class="lead">${lead}</p>${mock&&byK?`<h3 class="subh">知識領域</h3>${byK}<h3 class="subh">考綱領域</h3>`:''}${byD}
-   <div class="review"><h3>逐題檢討　點開看題解</h3>${rev}</div>`:'<p class="lead">這次沒有作答任何題目。</p>'}
-   <div style="margin-top:24px"><button class="btn" id="back" style="width:100%">回首頁</button></div></div>`;
-  document.getElementById('quit').onclick=()=>home(); document.getElementById('back').onclick=()=>home();
+  const items=S.list.map((q,i)=>({q,p:S.picks[i],u:S.flags[i]})).filter(x=>mock||x.p!=null);
+  let prev=null, sid=null;
+  if(mock){
+    prev=MOCKS.filter(m=>m.scope===S.scope).slice(-1)[0]||null;
+    sid=send('mock',S.list.map((q,i)=>({id:q.id,pick:S.picks[i],unsure:S.flags[i]})),{scope:S.scope});
+    MOCKS.push({t:Date.now(),n:S.list.length,ok:items.filter(x=>x.p===x.q.a).length,scope:S.scope,sid});
+  } else release(S.sids);
+  const label=S.label, scope=S.scope; S=null;
+  resultPage({label,mock,items,scope,prev});
+}
+
+/* ===== 結果（交卷後、或從小考紀錄重看） ===== */
+function breakdown(items){
+  const row=(name,l)=>l.length?`<div class="dom"><span>${name}</span><span>${l.filter(x=>x.p===x.q.a).length} / ${l.length}</span></div>`:'';
+  const k=KAS.map(n=>row(n,items.filter(x=>x.q.k===n))).join('');
+  const d=DOMAINS.map(n=>row(n,items.filter(x=>x.q.d===n))).join('');
+  return `<h3 class="subh">知識領域</h3>${k}<h3 class="subh">考綱領域</h3>${d}`;
+}
+function reviewHTML(items){
+  return items.map(x=>{const r=x.p===x.q.a;return `<details><summary><span class="mk ${r?'ok':'bad'}">${r?'○':'×'}</span><span class="t">${esc(x.q.q[0])}</span>${x.u?'<span class="fl">標記</span>':''}</summary>
+    <div class="d"><div class="tags">${tagsHTML(x.q)}</div>${qHTML(x.q)}<p class="ans">你的答案：${x.p==null||x.p<0?'未作答':L[x.p]+'　'+esc(x.q.o[x.p][0])}</p>${r?'':`<p class="ans">正確答案：${L[x.q.a]}　${esc(x.q.o[x.q.a][0])}</p>`}${explainHTML(x.q,x.p,false)}</div></details>`}).join('');
+}
+function resultPage(o){
+  window.scrollTo(0,0);
+  const items=o.items, ok=items.filter(x=>x.p===x.q.a).length, total=items.length, pct=pc(ok,total)||0;
+  let cmp='';
+  if(o.mock&&o.prev&&o.prev.n){const d=pct-pc(o.prev.ok,o.prev.n);cmp=`<span class="cmp ${d>0?'up':d<0?'down':'eq'}">${d>0?'比上次進步 '+d+'%':d<0?'比上次退步 '+(-d)+'%':'和上次相同'}</span>`;}
+  const th=Math.round(CFG.threshold*100);
+  const lead=o.mock?(pct>=th+10?'表現穩定，保持這個節奏。':pct>=th?'達到門檻，針對錯題再加強就更穩了。':'先回到各知識領域練習，把觀念補齊。'):`本次答對 ${ok} 題，共 ${total} 題。`;
+  const fl=items.filter(x=>x.u).length;
+  app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="quit" aria-label="返回">×</button><div class="label">${esc(o.title||o.label+'　結果')}</div></div></div></div>
+   <div class="wrap res">${total?`${o.sub?`<p class="lead" style="margin:0 0 10px">${esc(o.sub)}</p>`:''}<p class="score">${pct}<small>%</small>${cmp}</p>
+   <p class="lead">${lead}${o.mock&&o.scope?`<br>範圍：${esc(o.scope)}`:''}${fl?`<br>標記 ${fl} 題，已列入錯題複習。`:''}</p>
+   ${o.mock?breakdown(items):''}
+   <div class="review"><h3 class="subh">逐題檢討　點開看題解</h3>${reviewHTML(items)}</div>`:'<p class="lead">這次沒有作答任何題目。</p>'}
+   <div style="margin-top:24px"><button class="btn" id="back" style="width:100%">${o.back?'返回':'回首頁'}</button></div></div>`;
+  const go=o.back||home;
+  $('quit').onclick=()=>go(); $('back').onclick=()=>go();
+}
+
+/* ===== 學習分析 ===== */
+function anaPage(tab){
+  closeSheet(); window.scrollTo(0,0);
+  app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="back" aria-label="回首頁">×</button><div class="label">學習分析</div></div></div></div>
+    <div class="wrap"><div class="tabs" role="tablist"><button role="tab" data-t="weak" aria-selected="${tab==='weak'}">弱點分析</button><button role="tab" data-t="mock" aria-selected="${tab==='mock'}">小考紀錄</button></div>
+    <div class="ana" id="pane">${tab==='weak'?weakHTML():mockHTML()}</div></div>`;
+  $('back').onclick=()=>home();
+  app.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>anaPage(b.dataset.t));
+  app.querySelectorAll('[data-train]').forEach(b=>b.onclick=()=>train(b.dataset.train));
+  app.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>mockReview(b.dataset.m));
+}
+function weakHTML(){
+  const A=kaAnalysis(), th=Math.round(CFG.threshold*100);
+  const order={weak:0,good:1,few:2,none:3};
+  const list=A.filter(a=>a.count).sort((a,b)=>order[a.st]-order[b.st]||(a.p==null?0:a.p)-(b.p==null?0:b.p));
+  const weak=A.filter(a=>a.st==='weak'), rated=A.filter(a=>a.st==='weak'||a.st==='good');
+  const sum=weak.length?`<b>需要加強：${weak.map(a=>short(a.k)).join('、')}</b>`:rated.length?'<b>目前有作答的科目都在門檻以上，繼續保持！</b>':'<b>先練習幾題，就會看到你的弱點分析。</b>';
+  const badge={weak:'<span class="badge weak">需加強</span>',good:'<span class="badge good">良好</span>',few:'<span class="badge few">資料不足</span>',none:'<span class="badge none">尚未練習</span>'};
+  const rows=list.map(a=>`<div class="ka"><div class="ka-top"><span class="n">${a.k}</span>${badge[a.st]}<span class="pc">${a.p==null?'—':a.p+'%'}</span></div>
+    <div class="ka-mid"><span class="bar"><i class="${a.st==='weak'?'low':a.st==='few'?'few':''}" style="width:${a.p||0}%"></i></span><span class="th" style="left:${th}%"></span></div>
+    <div class="ka-bot"><span>${a.st==='none'?`共 ${a.count} 題可練習`:`採計最近 ${a.n} 題`}</span>
+      ${a.trend!=null?`<span class="trend ${a.trend>0?'up':a.trend<0?'down':''}">${a.trend>0?'▲ '+a.trend+'%':a.trend<0?'▼ '+(-a.trend)+'%':'持平'}</span>`:''}
+      <button class="mini" data-train="${a.k}">練這一科</button></div></div>`).join('');
+  const doms=DOMAINS.map(d=>{const st=stats(byDom(d));return `<div class="dchip"><span>${d}</span><b>${st.p==null?'—':st.p+'%'}</b></div>`}).join('');
+  return `<div class="summary">${sum}<span>依每科最近 ${CFG.recentN} 題的答對率判斷，低於 ${th}% 標示為「需加強」；作答少於 ${CFG.minN} 題顯示「資料不足」。直線是 ${th}% 門檻。</span></div>
+    ${rows}<h3 class="subh">新版考綱領域答對率</h3><div class="doms">${doms}</div>`;
+}
+function train(k){
+  const all=byKA(k);
+  const rv=shuffle(all.filter(isReview)), fresh=shuffle(all.filter(q=>!H[q.id])), rest=shuffle(all.filter(q=>H[q.id]&&!isReview(q)));
+  start('practice',rv.concat(fresh,rest).slice(0,10),k+'・加強練習');
+}
+function chartSVG(ms){
+  const W=320,H0=150,pl=30,pr=10,pt=12,pb=24, th=CFG.threshold*100;
+  const x=i=>ms.length<2?(W+pl-pr)/2:pl+i*(W-pl-pr)/(ms.length-1), y=v=>pt+(100-v)*(H0-pt-pb)/100;
+  const pts=ms.map((m,i)=>[x(i),y(pc(m.ok,m.n)||0)]);
+  const grid=[0,50,100].map(v=>`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${pl-6}" y="${y(v)+4}" text-anchor="end" font-size="10" fill="var(--muted)">${v}</text>`).join('');
+  return `<svg class="chart" viewBox="0 0 ${W} ${H0}" role="img" aria-label="最近 ${ms.length} 次小考分數走勢">${grid}
+    <line x1="${pl}" x2="${W-pr}" y1="${y(th)}" y2="${y(th)}" stroke="var(--gold)" stroke-dasharray="4 4"/><text x="${W-pr}" y="${y(th)-5}" text-anchor="end" font-size="10" fill="var(--gold)">門檻 ${Math.round(th)}%</text>
+    <polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="var(--navy-2)" stroke-width="2.5" stroke-linejoin="round"/>
+    ${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="var(--bg)" stroke="var(--navy-2)" stroke-width="2"/><text x="${p[0]}" y="${H0-6}" text-anchor="middle" font-size="9" fill="var(--muted)">${new Date(ms[i].t).getMonth()+1}/${new Date(ms[i].t).getDate()}</text>`).join('')}</svg>`;
+}
+function mockHTML(){
+  if(!MOCKS.length)return '<div class="empty">還沒有小考紀錄。<br>完成一次模擬小考後，就會出現在這裡。</div>';
+  const recent=MOCKS.slice(-10);
+  const avg=Math.round(MOCKS.reduce((s,m)=>s+(pc(m.ok,m.n)||0),0)/MOCKS.length);
+  return `<div class="summary"><b>共 ${MOCKS.length} 次小考，平均 ${avg}%</b><span>下圖為最近 ${recent.length} 次的分數走勢。</span></div>
+    ${chartSVG(recent)}
+    <h3 class="subh">歷次紀錄　點選可重看題目與題解</h3>
+    ${MOCKS.slice().reverse().map(m=>`<button class="mrow" data-m="${esc(m.sid)}"><span class="main"><span class="sp">${esc(m.scope||'全部領域')}</span><span class="when">${when(m.t)}・${m.ok} / ${m.n} 題</span></span><span class="sc">${pc(m.ok,m.n)}%</span><span class="chev">›</span></button>`).join('')}`;
+}
+function mockReview(sid){
+  const m=MOCKS.find(x=>x.sid===sid); if(!m)return;
+  const items=LOG.filter(e=>e.sid===sid).map(e=>({q:qById(e.id),p:e.pick,u:e.u})).filter(x=>x.q);
+  if(!items.length)return toast('這次小考的題目已從題庫移除，無法重看');
+  resultPage({title:'小考紀錄',sub:when(m.t),mock:true,items,scope:m.scope||'全部領域',prev:null,back:()=>anaPage('mock')});
 }
 
 /* ===== 啟動 ===== */
 applySize();
-if(!API_URL)notice('尚未設定後端網址','請在 index.html 開頭的 API_URL 貼上 Apps Script 網頁應用程式的網址。');
+if(!API_URL||API_URL.indexOf('__')===0)notice('尚未設定後端網址','請在 index.html 開頭的 API_URL 貼上 Apps Script 網頁應用程式的網址。');
 else if(!TOKEN)login();
 else load();
 </script>
