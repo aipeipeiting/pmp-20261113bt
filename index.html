@@ -82,6 +82,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .quote .pill{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:var(--gold);background:var(--gold-soft);border-radius:999px;padding:2px 11px 2px 9px;margin-bottom:8px}
 .quote .pill svg{width:1rem;height:1rem}
 .quote p{margin:0;font-family:"Noto Serif TC","Songti TC",serif;font-size:1.05rem;line-height:1.7}
+.quote p.en{font-family:"Noto Serif TC",Georgia,"Times New Roman",serif;font-style:italic;font-size:.84rem;line-height:1.5;color:var(--muted);margin-top:2px}
 
 /* 區塊 */
 .sec{padding:24px 16px 4px}
@@ -502,6 +503,20 @@ function chipGroup(root,name,onChange){
   });
 }
 
+/* ===== 加油小語：中文在上，英文自動換到第二行 ===== */
+function quoteHTML(s){
+  s=String(s||'').trim();
+  let zh=s, en='';
+  const nlAt=s.indexOf('\n');
+  if(nlAt>0){zh=s.slice(0,nlAt).trim();en=s.slice(nlAt+1).trim();}
+  else{
+    let last=-1; for(let i=0;i<s.length;i++) if(s.charCodeAt(i)>127) last=i;
+    const rest=last>=0?s.slice(last+1).trim():'';
+    if(last>=0&&/[A-Za-z]/.test(rest)){zh=s.slice(0,last+1).trim();en=rest;}
+  }
+  return `<p>${esc(zh)}</p>${en?`<p class="en">${esc(en)}</p>`:''}`;
+}
+
 /* ===== 首頁 ===== */
 function home(){
   closeSheet(); window.scrollTo(0,0); clearInterval(tick); S=null;
@@ -515,7 +530,7 @@ function home(){
   const ms=store.get('pmp.mockSel',null), mockN=CFG.mockCount;
   app.innerHTML=`<div class="wrap">
   <header class="top ${QUOTE?'':'noq'}"><p class="hi">${esc(NAME)}，你好</p><h1 class="title">PMP 題庫練習</h1></header>
-  ${QUOTE?`<section class="quote"><span class="pill">${ICON.sun}今日加油小語</span><p>${esc(QUOTE)}</p></section>`:''}
+  ${QUOTE?`<section class="quote"><span class="pill">${ICON.sun}今日加油小語</span>${quoteHTML(QUOTE)}</section>`:''}
   <div id="assign"></div>
   <section class="sec"><div class="sec-head"><h3>練習　答完立即看題解</h3>
     <div class="seg" role="group" aria-label="分類方式"><button data-view="ka" aria-pressed="${view==='ka'}">知識領域</button><button data-view="dom" aria-pressed="${view==='dom'}">考綱領域</button></div></div>
