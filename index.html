@@ -55,6 +55,10 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .panel p{color:var(--on-navy-muted);margin:0 0 24px}
 .panel label{display:block;font-size:.9rem;color:var(--on-navy-muted);margin:14px 0 6px}
 .panel input{width:100%;font-size:1.05rem;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff}
+.pwf{position:relative}
+.pwf input{padding-right:3.2rem}
+.eye{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;border:0;padding:10px;color:var(--on-navy-muted);display:flex;border-radius:8px}
+.eye svg{width:1.3rem;height:1.3rem}
 .panel .go{width:100%;margin-top:22px;padding:14px;border:0;border-radius:10px;background:var(--gold);color:#fff;font-weight:700;font-size:1.05rem}
 .panel .go:disabled{opacity:.6}
 .panel .alt{width:100%;margin-top:10px;padding:12px;border:1px solid rgba(255,255,255,.28);border-radius:10px;background:none;color:var(--on-navy)}
@@ -120,6 +124,11 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .bar{height:5px;border-radius:3px;background:var(--line);margin-top:5px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--ok);border-radius:3px}
 .chev{flex:none;color:var(--muted);font-size:1.3rem}
+.doms{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:6px 0 4px}
+.dchip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.dchip span{font-size:.82rem;color:var(--muted)}
+.dchip b{font-family:"Noto Serif TC",serif;font-size:1.25rem}
+.subh{font-size:.85rem;color:var(--muted);font-weight:500;margin:18px 0 2px}
 .foot{padding:20px 20px 44px;font-size:.8rem;color:var(--muted)}
 .links{display:flex;gap:20px;margin-top:10px}
 .linkbtn{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;font-size:.85rem}
@@ -170,6 +179,8 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbyfHs04zozXLgvcz4zb49Am
 const MOCK_COUNT = 10;
 const SEC_PER_Q = 80; // 新版 PMP：240 分鐘 180 題，約每題 80 秒
 const DOMAINS = ['人員','流程','商業環境'];
+const KAS = ['整合管理','範疇管理','時程管理','成本管理','品質管理','資源管理','溝通管理','風險管理','採購管理','利害關係人管理'];
+const tagHTML=q=>`<span class="tag">${q.k?esc(q.k)+'｜':''}${esc(q.d)}</span>`;
 const L = 'ABCD';
 
 /* ===== 工具 ===== */
@@ -210,13 +221,19 @@ function handleErr(res){
 }
 function clearLocal(){TOKEN=null;store.del('pmp.token');Q=[];H={};DAYS=new Set();}
 
+const EYE_ON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+const EYE_OFF='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 5.2A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.2M6.6 6.6C3.7 8.4 2 12 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M2 2l20 20"/></svg>';
+function bindEyes(){app.querySelectorAll('.eye').forEach(b=>{const inp=b.previousElementSibling;b.innerHTML=EYE_ON;
+  b.onclick=()=>{const show=inp.type==='password';inp.type=show?'text':'password';b.innerHTML=show?EYE_OFF:EYE_ON;b.setAttribute('aria-label',show?'隱藏密碼':'顯示密碼');inp.focus();};});}
+
 /* ===== 登入 ===== */
 function login(msg){
   app.innerHTML=`<div class="panel"><div class="panel-box">
     <h1>PMP 題庫練習</h1><p>仕新管理顧問　學員專用</p>
     <label for="acc">帳號</label><input id="acc" autocomplete="username" autocapitalize="off" value="${esc(store.get('pmp.acc',''))}">
-    <label for="pw">密碼</label><input id="pw" type="password" autocomplete="current-password" enterkeyhint="go">
+    <label for="pw">密碼</label><div class="pwf"><input id="pw" type="password" autocomplete="current-password" enterkeyhint="go"><button type="button" class="eye" aria-label="顯示密碼"></button></div>
     <button class="go" id="go">登入</button><div class="err" id="err">${msg||''}</div></div></div>`;
+  bindEyes();
   const acc=document.getElementById('acc'),pw=document.getElementById('pw'),go=document.getElementById('go'),err=document.getElementById('err');
   const submit=async()=>{
     if(!acc.value.trim()||!pw.value){err.textContent='請輸入帳號和密碼。';return}
@@ -241,11 +258,12 @@ function changePw(forced,oldKnown){
   const needOld=!oldKnown;
   app.innerHTML=`<div class="panel"><div class="panel-box">
     <h1>${forced?'設定你的密碼':'變更密碼'}</h1><p>${forced?'第一次登入請改成你自己的密碼，之後就用新密碼登入。':'新密碼至少 6 碼。'}</p>
-    ${needOld?`<label for="op">${forced?'初始密碼':'目前密碼'}</label><input id="op" type="password" autocomplete="current-password">`:''}
-    <label for="np">新密碼（至少 6 碼）</label><input id="np" type="password" autocomplete="new-password">
-    <label for="np2">再輸入一次新密碼</label><input id="np2" type="password" autocomplete="new-password" enterkeyhint="done">
+    ${needOld?`<label for="op">${forced?'初始密碼':'目前密碼'}</label><div class="pwf"><input id="op" type="password" autocomplete="current-password"><button type="button" class="eye" aria-label="顯示密碼"></button></div>`:''}
+    <label for="np">新密碼（至少 6 碼）</label><div class="pwf"><input id="np" type="password" autocomplete="new-password"><button type="button" class="eye" aria-label="顯示密碼"></button></div>
+    <label for="np2">再輸入一次新密碼</label><div class="pwf"><input id="np2" type="password" autocomplete="new-password" enterkeyhint="done"><button type="button" class="eye" aria-label="顯示密碼"></button></div>
     <button class="go" id="go">儲存新密碼</button>${forced?'':'<button class="alt" id="cancel">取消</button>'}
     <div class="err" id="err"></div></div></div>`;
+  bindEyes();
   const $=id=>document.getElementById(id), err=$('err'), go=$('go');
   const submit=async()=>{
     const op=needOld?$('op').value:oldKnown, np=$('np').value, np2=$('np2').value;
@@ -343,11 +361,16 @@ function home(toast){
     <label class="count">${cd}<input type="date" id="exam" value="${exam||''}" aria-label="設定考試日期"></label></div>
     <div class="top-meta"><span>${s?`已連續練習 <strong>${s}</strong> 天`:'今天答一題，開始累積練習天數'}</span>
     <button class="size" id="size">字級：${store.get('pmp.size','l')==='xl'?'特大':'大'}</button></div></header>
-  <section class="daily"><div class="daily-head"><h2>今日一題</h2><span class="tag">${esc(dq.d)}</span></div>
+  <section class="daily"><div class="daily-head"><h2>今日一題</h2>${tagHTML(dq)}</div>
     ${qHTML(dq)}<div class="opts" id="dopts">${optsHTML(dq,dpick,dpick!=null)}</div>${dpick!=null?explainHTML(dq,dpick,true):''}</section>
   <section class="sec"><h3>練習　答完立即看題解</h3>
     ${row('all','全部隨機',`共 ${Q.length} 題`,Q)}
-    ${DOMAINS.map(d=>{const l=Q.filter(q=>q.d===d);return row('d:'+d,d,`${l.length} 題`,l)}).join('')}
+  </section>
+  <section class="sec"><h3>十大知識領域</h3>
+    ${KAS.map(k=>{const l=Q.filter(q=>q.k===k);return row('k:'+k,k,l.length?`${l.length} 題`:'尚無題目',l)}).join('')}
+  </section>
+  <section class="sec"><h3>新版考綱領域答對率</h3>
+    <div class="doms">${DOMAINS.map(d=>{const st=stats(Q.filter(q=>q.d===d));return `<button class="dchip" data-act="d:${d}"><span>${d}</span><b>${st.p==null?'—':st.p+'%'}</b></button>`}).join('')}</div>
   </section>
   <section class="sec"><h3>檢測</h3>
     <button class="row" data-act="mock"><div class="main"><div class="name">模擬小考</div><div class="sub">隨機 ${mockN} 題，限時 ${Math.round(mockN*SEC_PER_Q/60)} 分鐘，交卷後看題解</div></div><span class="chev">›</span></button>
@@ -365,6 +388,7 @@ function home(toast){
   app.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>{const a=b.dataset.act;
     if(a==='all')start('practice',shuffle(Q),'全部隨機');
     else if(a.startsWith('d:'))start('practice',shuffle(Q.filter(q=>q.d===a.slice(2))),a.slice(2));
+    else if(a.startsWith('k:'))start('practice',shuffle(Q.filter(q=>q.k===a.slice(2))),a.slice(2));
     else if(a==='mock')start('mock',shuffle(Q).slice(0,MOCK_COUNT),'模擬小考');
     else if(a==='wrong'){const l=wrongList();if(l.length)start('wrong',shuffle(l),'錯題複習');}
   });
@@ -392,7 +416,7 @@ function renderQ(){
   app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="quit" aria-label="離開">×</button>
       <div class="label">${S.label}</div><div class="meta">${mock?'<span class="timer" id="timer"></span>　':''}${S.i+1} / ${S.list.length}</div></div>
       <div class="prog"><i style="width:${done/S.list.length*100}%"></i></div></div></div>
-    <div class="wrap qbody"><span class="tag">${esc(q.d)}</span>${qHTML(q)}
+    <div class="wrap qbody">${tagHTML(q)}${qHTML(q)}
       <div class="opts" id="opts">${optsHTML(q,pick,reveal)}</div>${reveal?explainHTML(q,pick,true):''}</div>
     <div class="dock"><div class="wrap">${mock&&S.i>0?'<button class="btn ghost" id="prev">上一題</button>':''}
       <button class="btn" id="next" ${!mock&&pick==null?'disabled':''}>${last?(mock?'交卷':'看結果'):'下一題'}</button></div></div>`;
@@ -416,13 +440,14 @@ function finish(){
   if(mock)send('mock',S.list.map((q,i)=>({id:q.id,pick:S.picks[i]})));
   const done=S.list.map((q,i)=>({q,p:S.picks[i]})).filter(x=>mock||x.p!=null);
   const ok=done.filter(x=>x.p===x.q.a).length, total=done.length, pct=total?Math.round(ok/total*100):0;
+  const byK=KAS.map(k=>{const l=done.filter(x=>x.q.k===k);return l.length?`<div class="dom"><span>${k}</span><span>${l.filter(x=>x.p===x.q.a).length} / ${l.length}</span></div>`:''}).join('');
   const byD=DOMAINS.map(d=>{const l=done.filter(x=>x.q.d===d);return l.length?`<div class="dom"><span>${d}</span><span>${l.filter(x=>x.p===x.q.a).length} / ${l.length}</span></div>`:''}).join('');
   const lead=mock?(pct>=75?'表現穩定，保持這個節奏。':pct>=60?'接近及格水準，針對錯題再加強。':'先回到各領域練習，把觀念補齊。'):`本次答對 ${ok} 題，共 ${total} 題。`;
   const rev=done.map(x=>{const r=x.p===x.q.a;return `<details><summary><span class="mk ${r?'ok':'bad'}">${r?'○':'×'}</span><span class="t">${esc(x.q.q[0])}</span></summary>
     <div class="d">${qHTML(x.q)}<p class="ans">你的答案：${x.p==null?'未作答':L[x.p]+'　'+esc(x.q.o[x.p][0])}</p>${r?'':`<p class="ans">正確答案：${L[x.q.a]}　${esc(x.q.o[x.q.a][0])}</p>`}${explainHTML(x.q,x.p,false)}</div></details>`}).join('');
   const label=S.label; S=null; window.scrollTo(0,0);
   app.innerHTML=`<div class="qbar"><div class="wrap"><div class="qbar-row"><button class="x" id="quit" aria-label="回首頁">×</button><div class="label">${label}　結果</div></div></div></div>
-   <div class="wrap res">${total?`<p class="score">${pct}<small>%</small></p><p class="lead">${lead}</p>${byD}
+   <div class="wrap res">${total?`<p class="score">${pct}<small>%</small></p><p class="lead">${lead}</p>${mock&&byK?`<h3 class="subh">知識領域</h3>${byK}<h3 class="subh">考綱領域</h3>`:''}${byD}
    <div class="review"><h3>逐題檢討　點開看題解</h3>${rev}</div>`:'<p class="lead">這次沒有作答任何題目。</p>'}
    <div style="margin-top:24px"><button class="btn" id="back" style="width:100%">回首頁</button></div></div>`;
   document.getElementById('quit').onclick=()=>home(); document.getElementById('back').onclick=()=>home();
